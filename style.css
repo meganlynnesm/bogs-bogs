@@ -177,6 +177,9 @@ footer {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+.footer-inner {
   display: flex;
   justify-content: space-between;
 }
