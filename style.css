@@ -170,6 +170,18 @@ section {
   color: var(--accent);
 }
 
+/* ---------- Figma embed ---------- */
+.board {
+  width: 100%;
+}
+
+.figma-embed {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--faint);
+}
+
 /* ---------- Footer ---------- */
 footer {
   padding: 40px 0 80px;
