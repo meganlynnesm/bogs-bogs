@@ -132,6 +132,17 @@ section {
   font-weight: 400;
 }
 
+/* ---------- Links ---------- */
+.link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--faint);
+  padding-bottom: 1px;
+  transition: border-color 0.15s ease;
+}
+
+.link:hover { border-bottom-color: var(--accent); }
+
 /* ---------- Figure ---------- */
 .figure {
   margin: 0;
