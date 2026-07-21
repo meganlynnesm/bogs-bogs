@@ -23,7 +23,7 @@ body {
 
 .wrap {
   max-width: var(--maxw);
-  margin: 0;
+  margin: 0 auto;
   padding: 0 40px;
 }
 
@@ -71,9 +71,8 @@ nav {
 .nav-inner {
   display: flex;
   gap: 40px;
-  justify-content: space-between;
-  max-width: none;
-  margin: 0;
+  max-width: var(--maxw);
+  margin: 0 auto;
   padding: 0 40px;
   overflow-x: auto;
 }
