@@ -2,9 +2,19 @@
   --ink: #1a1a1a;
   --muted: #8a8a8a;
   --faint: #d8d8d8;
-  --accent: #e6007e;
   --bg: #ffffff;
   --maxw: 1100px;
+
+  /* ---- Project palette ---- */
+  --pink: #d2437a;              /* focal — Foxglove Bell */
+  --blue: #98a8d9;             /* secondary — cornflower blue (unassigned) */
+  --yellow: #e4c259;           /* secondary — Cowslip Meadow (yellow) */
+  --yellowgreen-dark: #828211;  /* secondary — Fields of Elation · peatlands */
+  --purple: #62496f;           /* secondary — Wasteland */
+  --tiger: #cb5600;            /* secondary — Tibetan Tiger (burnt orange) · cables */
+  --ochre: #ac6f20;            /* secondary — Ochre */
+
+  --accent: var(--pink);       /* focal accent used across the site */
 }
 
 * { box-sizing: border-box; }

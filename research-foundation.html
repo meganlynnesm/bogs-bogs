@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Foundation — Map</title>
+
+  <!-- MapLibre GL (per the tutorial) -->
+  <script src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js"></script>
+  <link href="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="research-foundation.css" />
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <p class="eyebrow">02 &nbsp;·&nbsp; Research Foundation</p>
+      <h1>global&#8202;<span class="accent">—</span>&#8202;map</h1>
+      <p class="lede">A zoomable map of the ground and the wires: degraded peatlands and the
+        submarine cable infrastructure that carries the data.</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html#abstract">Abstract</a>
+      <a href="index.html#ai">AI</a>
+      <a href="index.html#data-centres">Data Centres</a>
+      <a href="index.html#regeneration">Regeneration</a>
+      <a href="index.html#obsolesence">Obsolesence</a>
+      <a href="research-foundation.html" class="active">Map</a>
+      <a href="https://www.figma.com/board/xL03VU4NJwPr7TqPYx0kQo/Megan?node-id=0-1&t=hWTf1eEl6EaETGrU-1" target="_blank" rel="noopener">Figma Board</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="map-section">
+      <div class="wrap">
+        <div class="section-grid">
+          <div class="section-label">Foundation Map</div>
+          <div class="map-block">
+
+            <div class="map-shell">
+              <div id="map"></div>
+
+              <!-- Legend + layer toggles -->
+              <div class="map-panel">
+                <p class="panel-title">Layers</p>
+                <label class="legend-row">
+                  <input type="checkbox" id="toggle-datacentres" checked />
+                  <span class="swatch swatch-dc"></span>
+                  <span>Data centres</span>
+                </label>
+                <label class="legend-row">
+                  <input type="checkbox" id="toggle-cables" checked />
+                  <span class="swatch swatch-cable"></span>
+                  <span>Submarine cables (global)</span>
+                </label>
+                <label class="legend-row">
+                  <input type="checkbox" id="toggle-peatlands" checked />
+                  <span class="swatch swatch-peat"></span>
+                  <span>Peatlands &amp; organic soils</span>
+                </label>
+              </div>
+            </div>
+
+            <p class="map-caption">
+              <span class="fig-num">Map</span>
+              Data centres (from OpenStreetMap) and global submarine cable routes sit over a
+              worldwide peatland layer. Click any data centre or cable for details; toggle layers
+              at right.
+            </p>
+
+            <p class="map-sources">
+              Sources: Peatlands &mdash; <a class="link" href="https://data.globalforestwatch.org/datasets/gfw::global-peatlands/about" target="_blank" rel="noopener">Global Peatlands</a>,
+              Global Forest Watch / WRI (CC&#8209;BY&#8209;4.0). Submarine cables &mdash;
+              <a class="link" href="https://www.submarinecablemap.com" target="_blank" rel="noopener">TeleGeography Submarine Cable Map</a>.
+              Data centres &mdash; <a class="link" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (ODbL).
+              Basemap &copy; OpenStreetMap contributors, &copy; CARTO.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>Summer Semester</span>
+      <span>2026</span>
+    </div>
+  </footer>
+
+  <script src="research-foundation.js"></script>
+
+</body>
+</html>

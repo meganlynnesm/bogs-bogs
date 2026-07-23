@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bogs—bogs · Colour Palette</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .pal-wrap { max-width: 980px; margin: 0 auto; padding: 64px 40px 96px; }
+    .pal-eyebrow {
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin: 0 0 18px;
+    }
+    .pal-title { font-size: clamp(32px, 6vw, 56px); font-weight: 300; letter-spacing: -0.02em; margin: 0 0 8px; }
+    .pal-title .accent { color: var(--accent); }
+    .pal-lede { color: var(--muted); font-weight: 300; font-size: 18px; margin: 0 0 48px; max-width: 520px; }
+    .pal-group-label {
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin: 40px 0 14px;
+    }
+    .pal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+    .pal-card { border: 1px solid var(--faint); overflow: hidden; }
+    .pal-chip { height: 120px; }
+    .pal-meta { padding: 12px 14px; }
+    .pal-name { font-size: 15px; font-weight: 400; margin: 0; }
+    .pal-hex {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px; color: var(--muted); margin: 2px 0 0; text-transform: uppercase;
+    }
+    .pal-role { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+    .pal-var {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 11px; color: var(--ink); margin: 4px 0 0; opacity: 0.55;
+    }
+    @media (max-width: 700px) { .pal-wrap { padding: 40px 24px 64px; } }
+  </style>
+</head>
+<body>
+  <div class="pal-wrap">
+    <p class="pal-eyebrow">bogs&#8202;<span>—</span>&#8202;bogs</p>
+    <h1 class="pal-title">colour&#8202;<span class="accent">—</span>&#8202;palette</h1>
+    <p class="pal-lede">Project palette. Focal bright pink, warm and cool secondaries, over a dark map base.</p>
+
+    <p class="pal-group-label">Focal</p>
+    <div class="pal-grid">
+      <div class="pal-card">
+        <div class="pal-chip" style="background:#d2437a;"></div>
+        <div class="pal-meta">
+          <p class="pal-name">Bright pink</p>
+          <p class="pal-hex">#D2437A</p>
+          <p class="pal-role">Site accent · data centres</p>
+          <p class="pal-var">--pink</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="pal-group-label">Secondary</p>
+    <div class="pal-grid">
+      <div class="pal-card">
+        <div class="pal-chip" style="background:#98a8d9;"></div>
+        <div class="pal-meta">
+          <p class="pal-name">Cornflower blue</p>
+          <p class="pal-hex">#98A8D9</p>
+          <p class="pal-role">Cool accent · unassigned</p>
+          <p class="pal-var">--blue</p>
+        </div>
+      </div>
+      <div class="pal-card">
+        <div class="pal-chip" style="background:#828211;"></div>
+        <div class="pal-meta">
+          <p class="pal-name">Yellow-green dark</p>
+          <p class="pal-hex">#828211</p>
+          <p class="pal-role">Peatlands</p>
+          <p class="pal-var">--yellowgreen-dark</p>
+        </div>
+      </div>
+      <div class="pal-card">
+        <div class="pal-chip" style="background:#e4c259;"></div>
+        <div class="pal-meta">
+          <p class="pal-name">Yellow (Cowslip Meadow)</p>
+          <p class="pal-hex">#E4C259</p>
+          <p class="pal-role">Warm accent · unassigned</p>
+          <p class="pal-var">--yellow</p>
+        </div>
+      </div>
+      <div class="pal-card">
+        <div class="pal-chip" style="background:#62496f;"></div>
+        <div class="pal-meta">
+          <p class="pal-name">Purple</p>
+          <p class="pal-hex">#62496F</p>
+          <p class="pal-role">Reserved · planned data centres</p>
+          <p class="pal-var">--purple</p>
+        </div>
+      </div>
+      <div class="pal-card">
+        <div class="pal-chip" style="background:#cb5600;"></div>
+        <div class="pal-meta">
+          <p class="pal-name">Tibetan Tiger</p>
+          <p class="pal-hex">#CB5600</p>
+          <p class="pal-role">Submarine cables</p>
+          <p class="pal-var">--tiger</p>
+        </div>
+      </div>
+      <div class="pal-card">
+        <div class="pal-chip" style="background:#ac6f20;"></div>
+        <div class="pal-meta">
+          <p class="pal-name">Ochre</p>
+          <p class="pal-hex">#AC6F20</p>
+          <p class="pal-role">Warm accent · unassigned</p>
+          <p class="pal-var">--ochre</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="pal-group-label">Base</p>
+    <div class="pal-grid">
+      <div class="pal-card">
+        <div class="pal-chip" style="background:#0c0c0c;"></div>
+        <div class="pal-meta">
+          <p class="pal-name">Dark base</p>
+          <p class="pal-hex">#0C0C0C</p>
+          <p class="pal-role">Map basemap (unchanged)</p>
+          <p class="pal-var">basemap</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
