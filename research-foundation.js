@@ -14,40 +14,27 @@ const YGREEN = "#828211"; // yellow-green dark — peatlands (legend/reference)
 const PEAT_TILES =
   "https://tiles.globalforestwatch.org/gfw_peatlands/v20230315/default/{z}/{x}/{y}.png";
 
-// A no-key dark basemap (CARTO "dark_all") that mirrors the Dark Matter look.
-const basemapStyle = {
-  version: 8,
-  sources: {
-    carto: {
-      type: "raster",
-      tiles: [
-        "https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        "https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        "https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        "https://d.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-      ],
-      tileSize: 256,
-      attribution: "© OpenStreetMap contributors © CARTO",
-    },
-  },
-  layers: [
-    { id: "bg", type: "background", paint: { "background-color": "#0c0c0c" } },
-    { id: "carto", type: "raster", source: "carto" },
-  ],
-};
+mapboxgl.accessToken =
+  "pk.eyJ1IjoibWVnYW5seW5uZXNtIiwiYSI6ImNtcndzcG5zZDA3YTkzM3BzeXIwYTRydHgifQ.DOziK3dn5UBsQ7xetfQuXg";
 
-const map = new maplibregl.Map({
+const map = new mapboxgl.Map({
   container: "map",
-  style: basemapStyle,
+  style: "mapbox://styles/mapbox/dark-v11", // Mapbox's dark vector basemap
   center: [-30, 30], // Atlantic-centred; shows global spread + Europe/US
   zoom: 1.6,
   maxZoom: 16,
-  attributionControl: { compact: true },
 });
 
-map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-left");
+map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-left");
+map.addControl(new mapboxgl.FullscreenControl());
+map.addControl(new mapboxgl.ScaleControl(), "top-left");
 
 map.on("load", () => {
+  // Insert the peat raster just beneath the basemap's labels so place names
+  // stay legible on top of it.
+  const firstSymbol = map.getStyle().layers.find((l) => l.type === "symbol");
+  const beforeId = firstSymbol ? firstSymbol.id : undefined;
+
   // ---- Peatlands (global raster, hue-rotated toward yellow-green) ---------
   // Hue-rotation shifts GFW's native periwinkle to a yellow-green while leaving
   // the transparency mask intact, so it only colours actual peat pixels.
@@ -59,16 +46,19 @@ map.on("load", () => {
     attribution:
       '<a href="https://data.globalforestwatch.org/datasets/gfw::global-peatlands/about" target="_blank" rel="noopener">Global Peatlands</a> — GFW/WRI (CC-BY-4.0)',
   });
-  map.addLayer({
-    id: "peatlands-raster",
-    type: "raster",
-    source: "peatlands",
-    paint: {
-      "raster-hue-rotate": -172, // periwinkle (~232°) → olive yellow-green (~60°)
-      "raster-saturation": 0.3,
-      "raster-opacity": 0.85,
+  map.addLayer(
+    {
+      id: "peatlands-raster",
+      type: "raster",
+      source: "peatlands",
+      paint: {
+        "raster-hue-rotate": -172, // periwinkle (~232°) → olive yellow-green (~60°)
+        "raster-saturation": 0.3,
+        "raster-opacity": 0.85,
+      },
     },
-  });
+    beforeId
+  );
 
   // ---- Submarine cables: TeleGeography global routes (mid-tone blue) ------
   map.addSource("cables", {
@@ -132,7 +122,7 @@ function wirePopups() {
     const link = p.id
       ? `<br><a href="https://www.submarinecablemap.com/submarine-cable/${p.id}" target="_blank" rel="noopener">View cable →</a>`
       : "";
-    new maplibregl.Popup()
+    new mapboxgl.Popup()
       .setLngLat(e.lngLat)
       .setHTML(`<strong>${p.name || "Submarine cable"}</strong>${link}`)
       .addTo(map);
@@ -141,7 +131,7 @@ function wirePopups() {
   map.on("click", "datacentres-circle", (e) => {
     const p = e.features[0].properties || {};
     const op = p.operator ? `<br>${p.operator}` : "";
-    new maplibregl.Popup()
+    new mapboxgl.Popup()
       .setLngLat(e.features[0].geometry.coordinates.slice())
       .setHTML(`<strong>${p.name || "Data centre"}</strong>${op}`)
       .addTo(map);
