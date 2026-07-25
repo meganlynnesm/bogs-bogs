@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bogs—bogs · Research Survey</title>
+
+  <style>
+    :root {
+      --ink:#1a1a1a; --muted:#8a8a8a; --faint:#d8d8d8; --bg:#ffffff; --maxw:1100px;
+      --pink:#d2437a; --accent:var(--pink);
+      --blue:#98a8d9; --yellow:#e4c259; --yellowgreen-dark:#828211; --purple:#62496f; --tiger:#cb5600; --ochre:#ac6f20;
+    }
+    * { box-sizing:border-box; }
+    html { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+    body { margin:0; background:var(--bg); color:var(--ink);
+      font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:400; line-height:1.6; letter-spacing:.01em; }
+    .wrap { max-width:var(--maxw); margin:0 auto; padding:0 40px; }
+
+    nav { position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--faint); z-index:10; }
+    .nav-inner { display:flex; gap:40px; max-width:var(--maxw); margin:0 auto; padding:0 40px; overflow-x:auto; }
+    nav a { display:inline-block; padding:20px 0; font-size:13px; letter-spacing:.08em; text-transform:uppercase;
+      color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:color .15s ease,border-color .15s ease; }
+    nav a:hover { color:var(--ink); }
+    nav a.active { color:var(--ink); border-bottom-color:var(--accent); }
+
+    header { padding:80px 0 48px; border-bottom:1px solid var(--faint); }
+    .eyebrow { font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin:0 0 20px; }
+    h1 { font-size:clamp(40px,7vw,76px); font-weight:300; line-height:1.05; letter-spacing:-.02em; margin:0; }
+    h1 .accent { color:var(--accent); }
+    .lede { max-width:600px; margin:24px 0 0; font-size:18px; font-weight:300; color:var(--muted); }
+
+    section { padding:64px 0; border-bottom:1px solid var(--faint); }
+    .section-grid { display:grid; grid-template-columns:180px 1fr; gap:48px; }
+    .section-label { font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); padding-top:6px; line-height:1.8; }
+    .section-label .num { color:var(--accent); }
+
+    .q-text { font-size:26px; font-weight:300; letter-spacing:-.01em; line-height:1.25; margin:0 0 32px; max-width:640px; }
+
+    /* Choice options */
+    .options { display:flex; flex-direction:column; border-top:1px solid var(--faint); max-width:640px; }
+    .option { display:flex; align-items:center; justify-content:space-between; gap:16px; width:100%; text-align:left;
+      background:none; border:none; border-bottom:1px solid var(--faint); padding:20px 4px;
+      font-family:inherit; font-size:19px; font-weight:300; color:var(--ink); cursor:pointer; transition:padding-left .15s ease,color .15s ease; }
+    .option:hover:not(:disabled) { padding-left:16px; color:var(--accent); }
+    .option:disabled { cursor:default; }
+    .option .idx { color:var(--muted); font-size:13px; letter-spacing:.08em; margin-right:8px; }
+    .option .tag { color:var(--accent); font-size:12px; letter-spacing:.16em; text-transform:uppercase; }
+
+    /* Slider */
+    .slider-wrap { max-width:640px; }
+    .slider-value { font-size:52px; font-weight:300; letter-spacing:-.02em; line-height:1; margin:0 0 4px; }
+    .slider-value .unit { font-size:20px; color:var(--muted); margin-left:6px; }
+    .slider-caption { font-size:13px; color:var(--muted); margin:0 0 24px; min-height:1.2em; }
+    input[type=range] { -webkit-appearance:none; appearance:none; width:100%; height:2px; background:var(--faint); outline:none; margin:18px 0 10px; cursor:pointer; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:22px; height:22px; border-radius:50%; background:var(--accent); cursor:pointer; border:3px solid #fff; box-shadow:0 0 0 1px var(--faint); }
+    input[type=range]::-moz-range-thumb { width:22px; height:22px; border-radius:50%; background:var(--accent); cursor:pointer; border:3px solid #fff; box-shadow:0 0 0 1px var(--faint); }
+    input[type=range]:disabled { opacity:.5; cursor:default; }
+    .slider-ends { display:flex; justify-content:space-between; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+    .slider-ends.steps span { flex:1; text-align:center; }
+    .slider-ends.steps span:first-child { text-align:left; }
+    .slider-ends.steps span:last-child { text-align:right; }
+
+    .submit { margin-top:26px; background:none; border:1px solid var(--ink); color:var(--ink);
+      font-family:inherit; font-size:13px; letter-spacing:.12em; text-transform:uppercase; padding:12px 26px; cursor:pointer; transition:all .15s ease; }
+    .submit:hover:not(:disabled) { background:var(--ink); color:#fff; }
+    .submit:disabled { border-color:var(--faint); color:var(--muted); cursor:default; }
+
+    /* Results */
+    .results { margin-top:40px; max-width:640px; }
+    .results-heading { font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin:0 0 22px; }
+    .bar-row { margin-bottom:20px; }
+    .bar-label { display:flex; justify-content:space-between; align-items:baseline; font-size:15px; margin-bottom:8px; }
+    .bar-name { font-weight:300; }
+    .bar-val { color:var(--muted); font-variant-numeric:tabular-nums; font-size:13px; letter-spacing:.04em; }
+    .bar-track { height:6px; background:#f0f0f0; }
+    .bar-fill { height:100%; width:0; transition:width 1s cubic-bezier(.22,1,.36,1); }
+
+    /* Average + histogram for the AI slider */
+    .avg { font-size:44px; font-weight:300; letter-spacing:-.02em; margin:0 0 4px; }
+    .avg .unit { font-size:18px; color:var(--muted); margin-left:4px; }
+    .avg-caption { font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 24px; }
+    .histo { display:flex; align-items:flex-end; gap:6px; height:90px; margin-bottom:8px; }
+    .histo .hbar { flex:1; background:var(--accent); min-height:2px; transition:height 1s cubic-bezier(.22,1,.36,1); }
+    .histo-axis { display:flex; gap:6px; }
+    .histo-axis span { flex:1; text-align:center; font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; }
+
+    .total { margin-top:30px; padding-top:16px; border-top:1px solid var(--faint); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .total span { color:var(--ink); }
+    .note { margin:16px 0 0; font-size:13px; color:var(--muted); font-weight:300; }
+
+    footer { padding:40px 0 80px; }
+    .footer-inner { display:flex; justify-content:space-between; max-width:var(--maxw); margin:0 auto; padding:0 40px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    #status { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    #status .ok { color:var(--yellowgreen-dark); }
+    #status .bad { color:var(--tiger); }
+
+    .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff;
+      padding:12px 20px; font-size:13px; letter-spacing:.04em; z-index:1000; animation:rise .25s ease-out; }
+    .toast.bad { background:var(--tiger); }
+    .toast.out { opacity:0; transition:opacity .3s ease; }
+    @keyframes rise { from{transform:translate(-50%,12px);opacity:0;} to{transform:translate(-50%,0);opacity:1;} }
+
+    @media (max-width:700px) {
+      .wrap,.nav-inner,.footer-inner { padding:0 24px; }
+      header { padding:56px 0 40px; }
+      .section-grid { grid-template-columns:1fr; gap:16px; }
+      .q-text { font-size:22px; } .option { font-size:17px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="../index.html">Home</a>
+      <a href="../research-foundation.html">Map</a>
+      <a href="#" class="active">Survey</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="wrap">
+      <p class="eyebrow">Research Foundation &nbsp;·&nbsp; Live Survey</p>
+      <h1>what do you&#8202;<span class="accent">—</span>&#8202;think?</h1>
+      <p class="lede">Five quick questions across the themes of this project — peatlands, data centres, AI, disparity, and obsolescence. Your answers are anonymous, update live, and help set the direction for next semester.</p>
+    </div>
+  </header>
+
+  <main id="survey"><!-- questions rendered here --></main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>bogs—bogs</span>
+      <span id="status">Connecting to Firebase…</span>
+      <span>2026</span>
+    </div>
+  </footer>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // ====================  YOUR FIREBASE CONFIG  ====================
+    const firebaseConfig = {
+      apiKey: "AIzaSyDu8Rjp14X8-cAXCbE500CS5IeMWo7dbiM",
+      authDomain: "bogs-bogs-bogs.firebaseapp.com",
+      databaseURL: "https://bogs-bogs-bogs-default-rtdb.firebaseio.com",
+      projectId: "bogs-bogs-bogs",
+      storageBucket: "bogs-bogs-bogs.firebasestorage.app",
+      messagingSenderId: "880993972404",
+      appId: "1:880993972404:web:d5ebce80e3da530614e7e1"
+    };
+    // ===============================================================
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // ---- The five questions. Edit text/options here to change the survey. ----
+    const QUESTIONS = [
+      {
+        id:'peatlands', num:'01', theme:'Peatlands', type:'choice',
+        q:"What's the most important reason to restore and protect peatlands?",
+        options:[
+          {key:'carbon',       label:'Carbon storage & climate',      color:'#828211'},
+          {key:'water',        label:'Water & flood regulation',      color:'#98a8d9'},
+          {key:'biodiversity', label:'Biodiversity & habitat',        color:'#cb5600'},
+          {key:'heritage',     label:'Cultural & landscape heritage', color:'#62496f'}
+        ]
+      },
+      {
+        id:'datacentres', num:'02', theme:'Data Centres', type:'choice',
+        q:"What's your biggest concern with the scale of data centre construction?",
+        options:[
+          {key:'energy',  label:'Energy & carbon demand',    color:'#828211'},
+          {key:'water',   label:'Water use for cooling',     color:'#98a8d9'},
+          {key:'land',    label:'Land take & landscape',     color:'#cb5600'},
+          {key:'control', label:'Who controls land & data',  color:'#62496f'}
+        ]
+      },
+      {
+        id:'ai', num:'03', theme:'AI', type:'slider',
+        q:"How nervous are you about AI affecting your career?",
+        min:1, max:10, unit:'/ 10', minLabel:'Not at all', maxLabel:'Extremely'
+      },
+      {
+        id:'disparity', num:'04', theme:'Disparity', type:'choice',
+        q:"Do you think the digital divide still exists in the USA in 2026?",
+        options:[
+          {key:'yes',    label:'Yes',    color:'#828211'},
+          {key:'no',     label:'No',     color:'#98a8d9'},
+          {key:'unsure', label:'Unsure', color:'#cb5600'}
+        ]
+      },
+      {
+        id:'obsolete', num:'05', theme:'Obsolete', type:'steps',
+        q:"When will today's technology — phones, AI agents, data centres, EVs — be rendered obsolete?",
+        steps:[
+          {key:'50',   label:'50 years',   color:'#828211'},
+          {key:'100',  label:'100 years',  color:'#98a8d9'},
+          {key:'500',  label:'500 years',  color:'#cb5600'},
+          {key:'1000', label:'1000+ years',color:'#62496f'}
+        ]
+      }
+    ];
+
+    const KEYS = ['A','B','C','D','E'];
+    const surveyEl = document.getElementById('survey');
+    const statusEl = document.getElementById('status');
+
+    // Build each question as a <section>
+    QUESTIONS.forEach(function(Q){
+      const sec = document.createElement('section');
+      const voted = localStorage.getItem('bogsSurvey_' + Q.id);
+      sec.innerHTML =
+        '<div class="wrap"><div class="section-grid">' +
+          '<div class="section-label"><span class="num">' + Q.num + '</span><br>' + Q.theme + '</div>' +
+          '<div><h2 class="q-text">' + Q.q + '</h2><div id="input-' + Q.id + '"></div>' +
+          '<div class="results" id="results-' + Q.id + '" hidden></div>' +
+          '<p class="note" id="note-' + Q.id + '"></p></div>' +
+        '</div></div>';
+      surveyEl.appendChild(sec);
+      renderInput(Q);
+      // Live listener for this question's whole node
+      database.ref('survey/' + Q.id).on('value', function(snap){
+        renderResults(Q, snap.val() || {});
+      });
+      if(voted) lockQuestion(Q, voted);
+    });
+
+    // ---- Render the input area for a question ----
+    function renderInput(Q){
+      const box = document.getElementById('input-' + Q.id);
+      if(Q.type === 'choice'){
+        const opts = document.createElement('div');
+        opts.className = 'options';
+        Q.options.forEach(function(o, i){
+          const b = document.createElement('button');
+          b.className = 'option'; b.dataset.key = o.key;
+          b.innerHTML = '<span><span class="idx">' + KEYS[i] + '</span>' + o.label + '</span><span class="tag" id="tag-' + Q.id + '-' + o.key + '"></span>';
+          b.addEventListener('click', function(){ vote(Q, o.key); });
+          opts.appendChild(b);
+        });
+        box.appendChild(opts);
+      } else {
+        // slider (continuous 1..max) or steps (discrete labelled stops)
+        const isSteps = Q.type === 'steps';
+        const min = isSteps ? 0 : Q.min;
+        const max = isSteps ? Q.steps.length - 1 : Q.max;
+        const start = Math.round((min + max) / 2);
+        const wrap = document.createElement('div');
+        wrap.className = 'slider-wrap';
+        const endsHtml = isSteps
+          ? '<div class="slider-ends steps">' + Q.steps.map(function(s){ return '<span>' + s.label + '</span>'; }).join('') + '</div>'
+          : '<div class="slider-ends"><span>' + Q.minLabel + '</span><span>' + Q.maxLabel + '</span></div>';
+        wrap.innerHTML =
+          '<div class="slider-value" id="sv-' + Q.id + '"></div>' +
+          '<input type="range" id="range-' + Q.id + '" min="' + min + '" max="' + max + '" step="1" value="' + start + '">' +
+          endsHtml +
+          '<button class="submit" id="submit-' + Q.id + '">Submit answer</button>';
+        box.appendChild(wrap);
+        const range = document.getElementById('range-' + Q.id);
+        const label = document.getElementById('sv-' + Q.id);
+        function paint(){
+          const v = +range.value;
+          if(isSteps){ label.textContent = Q.steps[v].label; }
+          else { label.innerHTML = v + '<span class="unit">' + Q.unit + '</span>'; }
+          const pct = ((v - min) / (max - min)) * 100;
+          range.style.background = 'linear-gradient(to right, var(--accent) 0%, var(--accent) ' + pct + '%, var(--faint) ' + pct + '%, var(--faint) 100%)';
+        }
+        paint();
+        range.addEventListener('input', paint);
+        document.getElementById('submit-' + Q.id).addEventListener('click', function(){
+          const v = +range.value;
+          const bucket = isSteps ? Q.steps[v].key : String(v);
+          vote(Q, bucket);
+        });
+      }
+    }
+
+    // ---- Record a vote: read once, then set count + 1 (tutorial pattern) ----
+    function vote(Q, bucketKey){
+      if(localStorage.getItem('bogsSurvey_' + Q.id)) return;
+      const ref = database.ref('survey/' + Q.id + '/' + bucketKey);
+      ref.once('value')
+        .then(function(snap){ return ref.set((snap.val() || 0) + 1); })
+        .then(function(){
+          localStorage.setItem('bogsSurvey_' + Q.id, bucketKey);
+          lockQuestion(Q, bucketKey);
+          toast('Answer recorded · ' + Q.theme, false);
+        })
+        .catch(function(err){ console.error(err); toast('Could not save your answer. Try again.', true); });
+    }
+
+    // ---- Lock a question after answering ----
+    function lockQuestion(Q, chosen){
+      const box = document.getElementById('input-' + Q.id);
+      if(Q.type === 'choice'){
+        box.querySelectorAll('.option').forEach(function(b){
+          b.disabled = true;
+          if(b.dataset.key === chosen){ const t = document.getElementById('tag-' + Q.id + '-' + chosen); if(t) t.textContent = 'your answer'; }
+        });
+      } else {
+        const r = document.getElementById('range-' + Q.id); if(r) r.disabled = true;
+        const s = document.getElementById('submit-' + Q.id); if(s){ s.disabled = true; s.textContent = 'Answer submitted'; }
+      }
+      document.getElementById('results-' + Q.id).hidden = false;
+      const note = document.getElementById('note-' + Q.id);
+      if(note) note.textContent = 'Thanks — live results shown above. One answer per visitor.';
+    }
+
+    // ---- Render a question's results from its data node ----
+    function renderResults(Q, data){
+      const box = document.getElementById('results-' + Q.id);
+
+      if(Q.type === 'slider'){
+        // distribution 1..max + average
+        let total = 0, sum = 0, max = 0;
+        const c = {};
+        for(let v = Q.min; v <= Q.max; v++){ const n = data[v] || 0; c[v] = n; total += n; sum += v * n; if(n > max) max = n; }
+        const avg = total ? (sum / total) : 0;
+        let bars = '', axis = '';
+        for(let v = Q.min; v <= Q.max; v++){
+          const h = max ? (c[v] / max) * 100 : 0;
+          bars += '<div class="hbar" style="height:' + h + '%" title="' + v + ': ' + c[v] + '"></div>';
+          axis += '<span>' + v + '</span>';
+        }
+        box.innerHTML =
+          '<div class="results-heading">Live results</div>' +
+          '<div class="avg">' + avg.toFixed(1) + '<span class="unit">' + Q.unit + ' avg</span></div>' +
+          '<div class="avg-caption">Average nervousness</div>' +
+          '<div class="histo">' + bars + '</div><div class="histo-axis">' + axis + '</div>' +
+          '<div class="total">Responses <span>' + total + '</span></div>';
+        return;
+      }
+
+      // choice OR steps -> horizontal bars
+      const items = Q.type === 'steps' ? Q.steps : Q.options;
+      let total = 0, max = 0;
+      items.forEach(function(it){ const n = data[it.key] || 0; total += n; if(n > max) max = n; });
+      let rows = '';
+      items.forEach(function(it){
+        const n = data[it.key] || 0;
+        const pct = total ? Math.round((n / total) * 100) : 0;
+        const w = max ? (n / max) * 100 : 0;
+        rows += '<div class="bar-row"><div class="bar-label"><span class="bar-name">' + it.label + '</span>' +
+                '<span class="bar-val">' + n + ' · ' + pct + '%</span></div>' +
+                '<div class="bar-track"><div class="bar-fill" style="width:' + w + '%;background:' + it.color + '"></div></div></div>';
+      });
+      box.innerHTML = '<div class="results-heading">Live results</div>' + rows +
+                      '<div class="total">Responses <span>' + total + '</span></div>';
+    }
+
+    // ---- Connection status ----
+    database.ref('.info/connected').on('value', function(snap){
+      statusEl.innerHTML = snap.val() ? '<span class="ok">● Connected</span>' : '<span class="bad">● Disconnected</span>';
+    });
+
+    function toast(msg, bad){
+      const el = document.createElement('div');
+      el.className = 'toast' + (bad ? ' bad' : '');
+      el.textContent = msg; document.body.appendChild(el);
+      setTimeout(function(){ el.classList.add('out'); setTimeout(function(){ el.remove(); }, 300); }, bad ? 5000 : 3000);
+    }
+  });
+  </script>
+</body>
+</html>
