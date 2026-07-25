@@ -15,7 +15,7 @@
       --blue:#98a8d9; --yellow:#e4c259; --yellowgreen-dark:#828211; --purple:#62496f; --tiger:#cb5600; --ochre:#ac6f20;
     }
     * { box-sizing:border-box; }
-    html { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
+    html { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
     body { margin:0; background:var(--bg); color:var(--ink);
       font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:400; line-height:1.6; letter-spacing:.01em; }
     .wrap { max-width:var(--maxw); margin:0 auto; padding:0 40px; }
@@ -117,15 +117,14 @@
     <div class="wrap">
       <p class="eyebrow">Research Foundation &nbsp;·&nbsp; Live Survey</p>
       <h1>what do you&#8202;<span class="accent">—</span>&#8202;think?</h1>
-      <p class="lede">Five quick questions across the themes of this project — peatlands, data centres, AI, disparity, and obsolescence. Your answers are anonymous, update live, and help set the direction for next semester.</p>
+      <p class="lede">Five quick questions across the themes of this project — peatlands; data, AI &amp; the divide; and obsolescence. Your answers are anonymous, update live, and help set the direction for next semester.</p>
     </div>
   </header>
 
   <nav>
     <div class="nav-inner">
       <a href="../index.html#abstract">Abstract</a>
-      <a href="../index.html#ai">AI</a>
-      <a href="../index.html#data-centres">Data Centres</a>
+      <a href="../index.html#data-ai">Data, AI &amp; the Divide</a>
       <a href="../index.html#regeneration">Regeneration</a>
       <a href="../index.html#obsolesence">Obsolesence</a>
       <a href="../research-foundation.html">Map</a>
@@ -175,7 +174,7 @@
         ]
       },
       {
-        id:'datacentres', num:'02', theme:'Data Centres', type:'choice',
+        id:'datacentres', num:'02', theme:'Data, AI & the Divide', type:'choice',
         q:"What's your biggest concern with the scale of data centre construction?",
         options:[
           {key:'energy',  label:'Energy & carbon demand',    color:'#828211'},
@@ -185,12 +184,12 @@
         ]
       },
       {
-        id:'ai', num:'03', theme:'AI', type:'slider',
+        id:'ai', num:'02', theme:'Data, AI & the Divide', type:'slider',
         q:"How nervous are you about AI affecting your career?",
         min:1, max:10, unit:'/ 10', minLabel:'Not at all', maxLabel:'Extremely'
       },
       {
-        id:'disparity', num:'04', theme:'Disparity', type:'choice',
+        id:'disparity', num:'02', theme:'Data, AI & the Divide', type:'choice',
         q:"Do you think the digital divide still exists in the USA in 2026?",
         options:[
           {key:'yes',    label:'Yes',    color:'#828211'},
@@ -199,7 +198,7 @@
         ]
       },
       {
-        id:'obsolete', num:'05', theme:'Obsolete', type:'steps',
+        id:'obsolete', num:'03', theme:'Obsolescence', type:'steps',
         q:"When will today's technology — phones, AI agents, data centres, EVs — be rendered obsolete?",
         steps:[
           {key:'50',   label:'50 years',   color:'#828211'},
@@ -215,12 +214,15 @@
     const statusEl = document.getElementById('status');
 
     // Build each question as a <section>
+    let prevTheme = null;
     QUESTIONS.forEach(function(Q){
       const sec = document.createElement('section');
       const voted = localStorage.getItem('bogsSurvey_' + Q.id);
+      const showLabel = Q.theme !== prevTheme; prevTheme = Q.theme;
+      const labelHtml = showLabel ? ('<span class="num">' + Q.num + '</span><br>' + Q.theme) : '';
       sec.innerHTML =
         '<div class="wrap"><div class="section-grid">' +
-          '<div class="section-label"><span class="num">' + Q.num + '</span><br>' + Q.theme + '</div>' +
+          '<div class="section-label">' + labelHtml + '</div>' +
           '<div><h2 class="q-text">' + Q.q + '</h2><div id="input-' + Q.id + '"></div>' +
           '<div class="results" id="results-' + Q.id + '" hidden></div>' +
           '<p class="note" id="note-' + Q.id + '"></p></div>' +

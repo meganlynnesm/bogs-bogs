@@ -21,9 +21,6 @@
 
 html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth; }
 
-/* Keep anchored sections clear of the sticky nav when jumped to */
-section { scroll-margin-top: 70px; }
-
 body {
   margin: 0;
   background: var(--bg);
@@ -114,6 +111,7 @@ nav a.active {
 section {
   padding: 72px 0;
   border-bottom: 1px solid var(--faint);
+  scroll-margin-top: 72px;
 }
 
 .section-grid {
