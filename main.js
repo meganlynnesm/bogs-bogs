@@ -12,4 +12,4 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { rootMargin: '-40% 0px -55% 0px' });
 
-document.querySelectorAll('main section').forEach(s => observer.observe(s));
+document.querySelectorAll('header[id], main section').forEach(s => observer.observe(s));

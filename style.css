@@ -19,7 +19,10 @@
 
 * { box-sizing: border-box; }
 
-html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth; }
+
+/* Keep anchored sections clear of the sticky nav when jumped to */
+section { scroll-margin-top: 70px; }
 
 body {
   margin: 0;

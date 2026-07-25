@@ -15,7 +15,7 @@
       --blue:#98a8d9; --yellow:#e4c259; --yellowgreen-dark:#828211; --purple:#62496f; --tiger:#cb5600; --ochre:#ac6f20;
     }
     * { box-sizing:border-box; }
-    html { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+    html { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
     body { margin:0; background:var(--bg); color:var(--ink);
       font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:400; line-height:1.6; letter-spacing:.01em; }
     .wrap { max-width:var(--maxw); margin:0 auto; padding:0 40px; }
@@ -113,14 +113,6 @@
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-inner">
-      <a href="../index.html">Home</a>
-      <a href="../research-foundation.html">Map</a>
-      <a href="#" class="active">Survey</a>
-    </div>
-  </nav>
-
   <header>
     <div class="wrap">
       <p class="eyebrow">Research Foundation &nbsp;·&nbsp; Live Survey</p>
@@ -128,6 +120,19 @@
       <p class="lede">Five quick questions across the themes of this project — peatlands, data centres, AI, disparity, and obsolescence. Your answers are anonymous, update live, and help set the direction for next semester.</p>
     </div>
   </header>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="../index.html#abstract">Abstract</a>
+      <a href="../index.html#ai">AI</a>
+      <a href="../index.html#data-centres">Data Centres</a>
+      <a href="../index.html#regeneration">Regeneration</a>
+      <a href="../index.html#obsolesence">Obsolesence</a>
+      <a href="../research-foundation.html">Map</a>
+      <a href="index.html" class="active">Survey</a>
+      <a href="https://www.figma.com/board/xL03VU4NJwPr7TqPYx0kQo/Megan?node-id=0-1&t=hWTf1eEl6EaETGrU-1" target="_blank" rel="noopener">Figma Board</a>
+    </div>
+  </nav>
 
   <main id="survey"><!-- questions rendered here --></main>
 
