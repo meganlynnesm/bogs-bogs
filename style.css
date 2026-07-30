@@ -6,7 +6,7 @@
   --maxw: 1100px;
 
   /* ---- Project palette ---- */
-  --pink: #d2437a;              /* focal — Foxglove Bell */
+  --pink: #c22e69;              /* focal — magma magenta (heat-map pink) */
   --blue: #98a8d9;             /* secondary — cornflower blue (unassigned) */
   --yellow: #e4c259;           /* secondary — Cowslip Meadow (yellow) */
   --yellowgreen-dark: #828211;  /* secondary — Fields of Elation · peatlands */
@@ -52,9 +52,10 @@ header {
 }
 
 h1 {
-  font-size: clamp(40px, 7vw, 76px);
-  font-weight: 300;
-  line-height: 1.05;
+  font-size: clamp(40px, 7vw, 84px);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.92;
   letter-spacing: -0.02em;
   margin: 0;
 }
@@ -89,8 +90,8 @@ nav {
 
 nav a {
   display: inline-block;
-  padding: 20px 0;
-  font-size: 13px;
+  padding: 7px 0;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -129,11 +130,12 @@ section {
 }
 
 .abstract p {
-  font-size: 21px;
-  font-weight: 300;
-  line-height: 1.65;
-  margin: 0 0 24px;
-  max-width: 660px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0 0 20px;
+  max-width: 620px;
+  text-align: justify;
 }
 
 .abstract p:last-child { margin-bottom: 0; }

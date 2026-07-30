@@ -1,0 +1,174 @@
+/* =====================================================================
+   Data, AI & the Divide — wide layout, LEFT secondary nav, dense catalogue
+   Loads after style.css (reuses palette variables).
+   ===================================================================== */
+
+/* two columns: left secondary nav + main content */
+.page-grid {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 44px;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 40px;
+  align-items: start;
+}
+
+/* ---- left secondary navigation (vertical, sticky) ---- */
+.subnav {
+  position: sticky;
+  top: 42px;               /* sits just under the thin main nav */
+  align-self: start;
+}
+
+.subnav-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 34px 0;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.subnav a {
+  display: flex;
+  gap: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.subnav a:hover { color: var(--ink); }
+.subnav .idx { color: var(--accent); }
+
+/* ---- right content column ---- */
+.cat-main { min-width: 0; padding: 34px 0 64px; }
+
+.page-head { margin: 0 0 8px; }
+.page-head .eyebrow { margin-bottom: 14px; }
+.page-head .lede { max-width: 620px; }
+
+/* ---- catalogue sections ---- */
+.cat-section {
+  padding: 30px 0 8px;
+  scroll-margin-top: 56px;
+}
+
+.cat-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 16px;
+}
+
+.cat-head .idx {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.cat-head h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+/* ---- dense grid (many small tiles, archive aesthetic) ---- */
+.catalogue {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(94px, 1fr));
+  gap: 8px;
+  grid-auto-flow: dense;
+}
+
+.cat-item {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 1 / 1;
+  background: #efeee8;
+  cursor: help;
+  transition: background 0.15s ease, outline-color 0.15s ease;
+  outline: 1px solid transparent;
+}
+
+.cat-item.span2 { grid-column: span 2; }
+
+.cat-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* silhouette-style objects sit inside the cell */
+  display: block;
+  mix-blend-mode: multiply;
+}
+
+.cat-num {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  z-index: 3;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.cat-ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cec9bd;
+  font-weight: 800;
+  font-size: 22px;
+}
+
+/* ---- hover popup ---- */
+.cat-pop {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+  width: max-content;
+  max-width: 220px;
+  background: var(--ink);
+  color: #fff;
+  padding: 9px 11px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.cat-pop strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--pink);
+}
+
+.cat-item:hover {
+  background: #f3e2ea;
+  outline-color: var(--accent);
+}
+
+.cat-item:hover .cat-num { color: var(--accent); }
+
+.cat-item:hover .cat-pop {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 800px) {
+  .page-grid { grid-template-columns: 1fr; gap: 0; padding: 0 22px; }
+  .subnav { position: static; }
+  .subnav-inner { flex-direction: row; flex-wrap: wrap; gap: 16px; padding: 16px 0; }
+  .catalogue { grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); }
+}

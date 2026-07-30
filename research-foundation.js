@@ -6,7 +6,7 @@
 // Built on MapLibre GL, following the mapping-systems MapLibre tutorial.
 // ---------------------------------------------------------------------------
 
-const PINK = "#d2437a"; // focal — data centres
+const PINK = "#c22e69"; // focal — data centres (magma magenta)
 const CABLE = "#cb5600"; // Tibetan Tiger (burnt orange) — cables
 const YGREEN = "#828211"; // yellow-green dark — peatlands (legend/reference)
 

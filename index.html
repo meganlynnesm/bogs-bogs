@@ -3,90 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Methods as Practices</title>
+  <title>bogs — bogs</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="landing.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
 </head>
-<body>
+<body class="landing-page">
 
-  <header>
-    <div class="wrap">
-      <p class="eyebrow">01 &nbsp;·&nbsp; Research Foundation</p>
-      <h1>data&#8202;<span class="accent">—</span>&#8202;peat&#8202;<span class="accent">—</span>&#8202;future obsolete</h1>
-      <p class="lede">Exploring themes of a research project.</p>
-    </div>
-  </header>
+  <!-- Whole landing is one click through to the menu -->
+  <a class="landing" href="menu.html" aria-label="Enter — open the menu">
+    <img class="landing-bg" src="figure-1.png" alt="" />
+    <div class="veil"></div>
+    <div class="texture"></div>
 
-  <nav>
-    <div class="nav-inner">
-      <a href="#abstract" class="active">Abstract</a>
-      <a href="#data-ai">Data, AI &amp; the Divide</a>
-      <a href="#regeneration">Regeneration</a>
-      <a href="#obsolesence">Obsolesence</a>
-      <a href="research-foundation.html">Map</a>
-      <a href="Quiz/index.html">Survey</a>
-      <a href="https://www.figma.com/board/xL03VU4NJwPr7TqPYx0kQo/Megan?node-id=0-1&t=hWTf1eEl6EaETGrU-1" target="_blank" rel="noopener">Figma Board</a>
-    </div>
-  </nav>
-
-  <main>
-    <section id="abstract">
-      <div class="wrap">
-        <div class="section-grid">
-          <div class="section-label">Abstract</div>
-          <div class="abstract">
-            <p class="drop">This project explores data, AI and the divide between urban and rural, global and local, connected and left behind.<br><br>
-              <p><b>Intertwined;</b> a study in regeneration of landscapes - how the demand in technology and past degraded peatlands
-              are both extractive industries, and how we might design a future where they are symbiotic rather than extractive.
-              </p>
-              <p><b>Connected;</b>> a question of obsolescence: what in all of this is genuinely future, and what
-              is merely the mysticism that accrues around AI and the technologies we imagine will save or reshape us.
-              It draws on a historical echo between extractive industries; a shift from harvesting land to harvesting
-              data which leads me to ideas of symbiosis. All leading to asking what remnants of data or technology actually persist across the
-              life-cycle of this infrastructure.</p>
-            <p>Keywords: disparity, servers, regeneration, symbiotic, obsolescence.</p>
-          </div>
-        </div>
+    <div class="content">
+      <div class="row top">
+        <span class="mono brand">bogs&#8202;<span class="accent">—</span>&#8202;bogs</span>
+        <span class="mono">Summer 2026</span>
       </div>
-    </section>
 
-    <section id="research-board">
-      <div class="wrap">
-        <div class="section-grid">
-          <div class="section-label">Research Board</div>
-          <div class="board">
-            <iframe
-              class="figma-embed"
-              src="https://embed.figma.com/board/xL03VU4NJwPr7TqPYx0kQo/Megan?node-id=0-1&embed-host=share"
-              title="Figma research board"
-              allowfullscreen
-              loading="lazy"></iframe>
-          </div>
-        </div>
+      <div class="landing-hero">
+        <h1 class="landing-title">
+          <span>Data</span>
+          <span>Peat</span>
+          <span class="pixel">Future</span>
+          <span>Obsolete</span>
+        </h1>
       </div>
-    </section>
 
-    <section id="figure">
-      <div class="wrap">
-        <figure class="figure">
-          <img src="figure-1.png" alt="Original Concept Image" />
-          <figcaption>
-            <span class="fig-num">Fig. 1</span>
-            This was one of my final images when exploring a data-farming landscape and it's future obsolesence. 
-            Read left to right, we move from the automated system to regenerated bog over the course of a millenia.
-          </figcaption>
-        </figure>
+      <div class="row bottom">
+        <span class="mono">Columbia GSAPP &nbsp;—&nbsp; Computational Design Practices</span>
+        <span class="mono enter">Enter&nbsp;&#10142;</span>
       </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap footer-inner">
-      <span>Summer Semester</span>
-      <span>2026</span>
     </div>
-  </footer>
 
-  <script src="main.js"></script>
+    <!-- pink/orange duotone filter for the background render -->
+    <svg class="duo-def" width="0" height="0" aria-hidden="true" focusable="false">
+      <filter id="duotone" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix"
+          values="0.33 0.33 0.33 0 0
+                  0.33 0.33 0.33 0 0
+                  0.33 0.33 0.33 0 0
+                  0    0    0    1 0" />
+        <feComponentTransfer>
+          <feFuncR type="table" tableValues="0.76 0.97" />
+          <feFuncG type="table" tableValues="0.18 0.65" />
+          <feFuncB type="table" tableValues="0.41 0.14" />
+        </feComponentTransfer>
+      </filter>
+    </svg>
+  </a>
 
 </body>
 </html>
