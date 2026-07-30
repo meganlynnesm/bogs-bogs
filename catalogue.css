@@ -72,15 +72,15 @@
 .cat-head h2 {
   margin: 0;
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 /* ---- dense grid (many small tiles, archive aesthetic) ---- */
 .catalogue {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(94px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 8px;
   grid-auto-flow: dense;
 }

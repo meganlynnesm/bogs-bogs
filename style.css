@@ -53,14 +53,24 @@ header {
 
 h1 {
   font-size: clamp(40px, 7vw, 84px);
-  font-weight: 800;
+  font-weight: 500;
   text-transform: uppercase;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
+  line-height: 1.04;
+  letter-spacing: 0;
   margin: 0;
 }
 
 h1 .accent { color: var(--accent); }
+
+/* square-dot separator (pixel/heat-map motif) */
+.sqdot {
+  display: inline-block;
+  width: 0.4em;
+  height: 0.4em;
+  background: var(--accent);
+  vertical-align: 0.08em;
+  margin: 0 0.22em;
+}
 
 .lede {
   max-width: 520px;
