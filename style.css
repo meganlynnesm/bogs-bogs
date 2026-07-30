@@ -81,11 +81,11 @@ h1 .accent { color: var(--accent); }
 /* square-dot separator (pixel/heat-map motif) */
 .sqdot {
   display: inline-block;
-  width: 0.4em;
-  height: 0.4em;
+  width: 0.16em;
+  height: 0.16em;
   background: var(--accent);
-  vertical-align: 0.08em;
-  margin: 0 0.22em;
+  vertical-align: 0.32em;
+  margin: 0 0.24em;
 }
 
 .lede {
