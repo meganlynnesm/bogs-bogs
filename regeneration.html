@@ -24,19 +24,29 @@
     </div>
   </nav>
 
-  <header>
-    <div class="wide">
-      <p class="eyebrow">03 &nbsp;·&nbsp; Regeneration</p>
-      <h1>regeneration</h1>
-      <p class="lede">Global land cover &mdash; forest as a share of each country's land &mdash; over
-        the world's peatlands, the degraded ground this project sets out to regenerate.</p>
+  <div class="page-grid">
+
+    <!-- secondary navigation — left side (same as Data/AI) -->
+    <aside class="subnav">
+      <div class="subnav-inner">
+        <a href="#landcover-map"><span class="idx">A</span>Land Cover Map</a>
+      </div>
+    </aside>
+
+    <div class="cat-main">
+      <div class="page-head">
+        <p class="eyebrow">03 &nbsp;·&nbsp; Regeneration</p>
+        <h1>regeneration</h1>
+        <p class="lede">Global land cover by dominant type, over the world's peatlands &mdash; the
+          degraded ground this project sets out to regenerate.</p>
+      </div>
     </div>
-  </header>
+  </div>
 
   <section id="landcover-map" class="divide-map">
     <div class="dm-head"><span class="idx">A</span><h2>Global land cover</h2></div>
-    <p class="dm-lede">Forest area (% of land) by country, with global peatlands over the top.
-      Click a country for its forest share; toggle layers at right.</p>
+    <p class="dm-lede">Dominant land-cover type by country, with global peatlands over the top.
+      Click a country for its land type; toggle layers at right.</p>
 
     <div class="map-shell">
       <div id="rmap"></div>
@@ -52,8 +62,8 @@
       </div>
     </div>
 
-    <p class="dm-sources">Sources: Forest area (% of land) &mdash; World Bank / FAO. Peatlands &mdash;
-      <a class="link" href="https://data.globalforestwatch.org/datasets/gfw::global-peatlands/about" target="_blank" rel="noopener">Global Peatlands</a>, GFW/WRI.
+    <p class="dm-sources">Sources: Forest &amp; agricultural land (% of land) &mdash; World Bank / FAO.
+      Peatlands &mdash; <a class="link" href="https://data.globalforestwatch.org/datasets/gfw::global-peatlands/about" target="_blank" rel="noopener">Global Peatlands</a>, GFW/WRI.
       Base &copy; OpenStreetMap contributors, &copy; CARTO.</p>
   </section>
 

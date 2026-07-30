@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Research Foundation — Map</title>
-
-  <!-- MapLibre GL -->
+  <title>bogs — bogs · Map</title>
   <script src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js"></script>
   <link href="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.css" rel="stylesheet" />
-
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="catalogue.css" />
   <link rel="stylesheet" href="research-foundation.css" />
 </head>
 <body>
@@ -27,68 +25,56 @@
     </div>
   </nav>
 
-  <header>
-    <div class="wrap">
-      <p class="eyebrow">02 &nbsp;·&nbsp; Research Map</p>
-      <h1>global&#8202;<span class="accent">—</span>&#8202;map</h1>
-      <p class="lede">A zoomable map of the ground and the wires: peatlands, the
-        submarine cable infrastructure that carries data and the data centres.</p>
-    </div>
-  </header>
-
-  <main>
-    <section id="map-section">
-      <div class="wrap">
-        <div class="section-grid">
-          <div class="section-label">Map Draft</div>
-          <div class="map-block">
-
-            <div class="map-shell">
-              <div id="map"></div>
-
-              <!-- Legend + layer toggles -->
-              <div class="map-panel">
-                <p class="panel-title">Layers</p>
-                <label class="legend-row">
-                  <input type="checkbox" id="toggle-datacentres" checked />
-                  <span class="swatch swatch-dc"></span>
-                  <span>Data centres</span>
-                </label>
-                <label class="legend-row">
-                  <input type="checkbox" id="toggle-cables" checked />
-                  <span class="swatch swatch-cable"></span>
-                  <span>Submarine cables (global)</span>
-                </label>
-                <label class="legend-row">
-                  <input type="checkbox" id="toggle-peatlands" checked />
-                  <span class="swatch swatch-peat"></span>
-                  <span>Peatlands &amp; organic soils</span>
-                </label>
-              </div>
-            </div>
-
-            <p class="map-caption">
-              <span class="fig-num">Map</span>
-              Data centres (from OpenStreetMap) and global submarine cable routes sit over a
-              worldwide peatland layer. Click any data centre or cable for details; toggle layers
-              at right.
-            </p>
-
-            <p class="map-sources">
-              Sources: Peatlands &mdash; <a class="link" href="https://data.globalforestwatch.org/datasets/gfw::global-peatlands/about" target="_blank" rel="noopener">Global Peatlands</a>,
-              Global Forest Watch / WRI (CC&#8209;BY&#8209;4.0). Submarine cables &mdash;
-              <a class="link" href="https://www.submarinecablemap.com" target="_blank" rel="noopener">TeleGeography Submarine Cable Map</a>.
-              Data centres &mdash; <a class="link" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (ODbL).
-              Basemap &copy; OpenStreetMap contributors, &copy; CARTO.
-            </p>
-          </div>
-        </div>
+  <div class="page-grid">
+    <aside class="subnav">
+      <div class="subnav-inner">
+        <a href="#map-section"><span class="idx">A</span>Global Map</a>
       </div>
-    </section>
-  </main>
+    </aside>
+
+    <div class="cat-main">
+      <div class="page-head">
+        <p class="eyebrow">05 &nbsp;·&nbsp; Map</p>
+        <h1>global<span class="sqdot"></span>map</h1>
+        <p class="lede">A zoomable map of the ground and the wires: peatlands, the submarine cable
+          infrastructure that carries data, and the data centres.</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="map-section" class="divide-map">
+    <div class="dm-head"><span class="idx">A</span><h2>Global map</h2></div>
+
+    <div class="map-shell">
+      <div id="map"></div>
+      <div class="map-panel">
+        <p class="panel-title">Layers</p>
+        <label class="legend-row">
+          <input type="checkbox" id="toggle-datacentres" checked />
+          <span class="swatch swatch-dc"></span><span>Data centres</span>
+        </label>
+        <label class="legend-row">
+          <input type="checkbox" id="toggle-cables" checked />
+          <span class="swatch swatch-cable"></span><span>Submarine cables (global)</span>
+        </label>
+        <label class="legend-row">
+          <input type="checkbox" id="toggle-peatlands" checked />
+          <span class="swatch swatch-peat"></span><span>Peatlands &amp; organic soils</span>
+        </label>
+      </div>
+    </div>
+
+    <p class="dm-sources">
+      Sources: Peatlands &mdash; <a class="link" href="https://data.globalforestwatch.org/datasets/gfw::global-peatlands/about" target="_blank" rel="noopener">Global Peatlands</a>,
+      Global Forest Watch / WRI (CC&#8209;BY&#8209;4.0). Submarine cables &mdash;
+      <a class="link" href="https://www.submarinecablemap.com" target="_blank" rel="noopener">TeleGeography Submarine Cable Map</a>.
+      Data centres &mdash; <a class="link" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (ODbL).
+      Basemap &copy; OpenStreetMap contributors, &copy; CARTO.
+    </p>
+  </section>
 
   <footer>
-    <div class="wrap footer-inner">
+    <div class="footer-inner" style="max-width:1600px;margin:0 auto;padding:0 40px;">
       <span>Summer Semester</span>
       <span>2026</span>
     </div>
