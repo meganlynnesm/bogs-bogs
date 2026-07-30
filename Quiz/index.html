@@ -6,55 +6,27 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>bogs—bogs · Research Survey</title>
+  <title>bogs — bogs · Survey</title>
+
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../catalogue.css" />
 
   <style>
-    :root {
-      --ink:#1a1a1a; --muted:#8a8a8a; --faint:#d8d8d8; --bg:#ffffff; --maxw:1100px;
-      --pink:#c22e69; --accent:var(--pink);
-      --blue:#98a8d9; --yellow:#e4c259; --yellowgreen-dark:#828211; --purple:#62496f; --tiger:#cb5600; --ochre:#ac6f20;
-    }
-    * { box-sizing:border-box; }
-    html { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
-    body { margin:0; background:var(--bg); color:var(--ink);
-      font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:400; line-height:1.6; letter-spacing:.01em; }
-    .wrap { max-width:var(--maxw); margin:0 auto; padding:0 40px; }
+    /* survey-specific styles only — shell/typography come from the shared CSS */
+    .q-text { font-size:22px; font-weight:400; letter-spacing:-.01em; line-height:1.3; margin:0 0 28px; max-width:640px; }
 
-    nav { position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--faint); z-index:10; }
-    .nav-inner { display:flex; gap:40px; max-width:var(--maxw); margin:0 auto; padding:0 40px; overflow-x:auto; }
-    nav a { display:inline-block; padding:20px 0; font-size:13px; letter-spacing:.08em; text-transform:uppercase;
-      color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:color .15s ease,border-color .15s ease; }
-    nav a:hover { color:var(--ink); }
-    nav a.active { color:var(--ink); border-bottom-color:var(--accent); }
-
-    header { padding:80px 0 48px; border-bottom:1px solid var(--faint); }
-    .eyebrow { font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin:0 0 20px; }
-    h1 { font-size:clamp(40px,7vw,76px); font-weight:300; line-height:1.05; letter-spacing:-.02em; margin:0; }
-    h1 .accent { color:var(--accent); }
-    .lede { max-width:600px; margin:24px 0 0; font-size:18px; font-weight:300; color:var(--muted); }
-
-    section { padding:64px 0; border-bottom:1px solid var(--faint); }
-    .section-grid { display:grid; grid-template-columns:180px 1fr; gap:48px; }
-    .section-label { font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); padding-top:6px; line-height:1.8; }
-    .section-label .num { color:var(--accent); }
-
-    .q-text { font-size:26px; font-weight:300; letter-spacing:-.01em; line-height:1.25; margin:0 0 32px; max-width:640px; }
-
-    /* Choice options */
     .options { display:flex; flex-direction:column; border-top:1px solid var(--faint); max-width:640px; }
     .option { display:flex; align-items:center; justify-content:space-between; gap:16px; width:100%; text-align:left;
-      background:none; border:none; border-bottom:1px solid var(--faint); padding:20px 4px;
-      font-family:inherit; font-size:19px; font-weight:300; color:var(--ink); cursor:pointer; transition:padding-left .15s ease,color .15s ease; }
+      background:none; border:none; border-bottom:1px solid var(--faint); padding:18px 4px;
+      font-family:inherit; font-size:18px; font-weight:400; color:var(--ink); cursor:pointer; transition:padding-left .15s ease,color .15s ease; }
     .option:hover:not(:disabled) { padding-left:16px; color:var(--accent); }
     .option:disabled { cursor:default; }
     .option .idx { color:var(--muted); font-size:13px; letter-spacing:.08em; margin-right:8px; }
     .option .tag { color:var(--accent); font-size:12px; letter-spacing:.16em; text-transform:uppercase; }
 
-    /* Slider */
     .slider-wrap { max-width:640px; }
     .slider-value { font-size:52px; font-weight:300; letter-spacing:-.02em; line-height:1; margin:0 0 4px; }
     .slider-value .unit { font-size:20px; color:var(--muted); margin-left:6px; }
-    .slider-caption { font-size:13px; color:var(--muted); margin:0 0 24px; min-height:1.2em; }
     input[type=range] { -webkit-appearance:none; appearance:none; width:100%; height:2px; background:var(--faint); outline:none; margin:18px 0 10px; cursor:pointer; }
     input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:22px; height:22px; border-radius:50%; background:var(--accent); cursor:pointer; border:3px solid #fff; box-shadow:0 0 0 1px var(--faint); }
     input[type=range]::-moz-range-thumb { width:22px; height:22px; border-radius:50%; background:var(--accent); cursor:pointer; border:3px solid #fff; box-shadow:0 0 0 1px var(--faint); }
@@ -69,17 +41,15 @@
     .submit:hover:not(:disabled) { background:var(--ink); color:#fff; }
     .submit:disabled { border-color:var(--faint); color:var(--muted); cursor:default; }
 
-    /* Results */
-    .results { margin-top:40px; max-width:640px; }
+    .results { margin-top:36px; max-width:640px; }
     .results-heading { font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin:0 0 22px; }
     .bar-row { margin-bottom:20px; }
     .bar-label { display:flex; justify-content:space-between; align-items:baseline; font-size:15px; margin-bottom:8px; }
-    .bar-name { font-weight:300; }
+    .bar-name { font-weight:400; }
     .bar-val { color:var(--muted); font-variant-numeric:tabular-nums; font-size:13px; letter-spacing:.04em; }
     .bar-track { height:6px; background:#f0f0f0; }
     .bar-fill { height:100%; width:0; transition:width 1s cubic-bezier(.22,1,.36,1); }
 
-    /* Average + histogram for the AI slider */
     .avg { font-size:44px; font-weight:300; letter-spacing:-.02em; margin:0 0 4px; }
     .avg .unit { font-size:18px; color:var(--muted); margin-left:4px; }
     .avg-caption { font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 24px; }
@@ -90,54 +60,57 @@
 
     .total { margin-top:30px; padding-top:16px; border-top:1px solid var(--faint); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
     .total span { color:var(--ink); }
-    .note { margin:16px 0 0; font-size:13px; color:var(--muted); font-weight:300; }
+    .note { margin:16px 0 0; font-size:13px; color:var(--muted); font-weight:400; }
 
-    footer { padding:40px 0 80px; }
-    .footer-inner { display:flex; justify-content:space-between; max-width:var(--maxw); margin:0 auto; padding:0 40px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
-    #status { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
-    #status .ok { color:var(--yellowgreen-dark); }
-    #status .bad { color:var(--tiger); }
+    #status .ok { color:var(--green); }
+    #status .bad { color:var(--orange); }
 
     .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff;
       padding:12px 20px; font-size:13px; letter-spacing:.04em; z-index:1000; animation:rise .25s ease-out; }
-    .toast.bad { background:var(--tiger); }
+    .toast.bad { background:var(--orange); }
     .toast.out { opacity:0; transition:opacity .3s ease; }
     @keyframes rise { from{transform:translate(-50%,12px);opacity:0;} to{transform:translate(-50%,0);opacity:1;} }
-
-    @media (max-width:700px) {
-      .wrap,.nav-inner,.footer-inner { padding:0 24px; }
-      header { padding:56px 0 40px; }
-      .section-grid { grid-template-columns:1fr; gap:16px; }
-      .q-text { font-size:22px; } .option { font-size:17px; }
-    }
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <p class="eyebrow">Research Foundation &nbsp;·&nbsp; Live Survey</p>
-      <h1>what do you&#8202;<span class="accent">—</span>&#8202;think?</h1>
-      <p class="lede">Five quick questions across the themes of this project — peatlands; data, AI &amp; the divide; and obsolescence. Your answers are anonymous, update live, and help set the direction for next semester.</p>
-    </div>
-  </header>
 
   <nav>
     <div class="nav-inner">
-      <a href="../index.html#abstract">Abstract</a>
-      <a href="../index.html#data-ai">Data, AI &amp; the Divide</a>
-      <a href="../index.html#regeneration">Regeneration</a>
-      <a href="../index.html#obsolesence">Obsolesence</a>
+      <a href="../menu.html">Menu</a>
+      <a href="../research.html#abstract">Abstract</a>
+      <a href="../data-ai.html">Data, AI &amp; the Divide</a>
+      <a href="../regeneration.html">Regeneration</a>
+      <a href="../research.html#obsolesence">Obsolesence</a>
       <a href="../research-foundation.html">Map</a>
       <a href="index.html" class="active">Survey</a>
       <a href="https://www.figma.com/board/xL03VU4NJwPr7TqPYx0kQo/Megan?node-id=0-1&t=hWTf1eEl6EaETGrU-1" target="_blank" rel="noopener">Figma Board</a>
     </div>
   </nav>
 
-  <main id="survey"><!-- questions rendered here --></main>
+  <div class="page-grid">
+    <aside class="subnav">
+      <div class="subnav-inner">
+        <a href="#peatlands"><span class="idx">01</span>Peatlands</a>
+        <a href="#datacentres"><span class="idx">02</span>Data &amp; AI</a>
+        <a href="#obsolete"><span class="idx">03</span>Obsolescence</a>
+      </div>
+    </aside>
+
+    <div class="cat-main">
+      <div class="page-head">
+        <p class="eyebrow">06 &nbsp;·&nbsp; Survey</p>
+        <h1>what do you<span class="sqdot"></span>think?</h1>
+        <p class="lede">Five quick questions across the themes of this project — peatlands; data, AI &amp; the divide;
+          and obsolescence. Your answers are anonymous, update live, and help set the direction for next semester.</p>
+      </div>
+
+      <main id="survey"><!-- questions rendered here --></main>
+    </div>
+  </div>
 
   <footer>
-    <div class="footer-inner">
-      <span>bogs—bogs</span>
+    <div class="footer-inner" style="max-width:1600px;margin:0 auto;padding:0 40px;">
+      <span>bogs — bogs</span>
       <span id="status">Connecting to Firebase…</span>
       <span>2026</span>
     </div>
@@ -146,7 +119,6 @@
   <script>
   document.addEventListener('DOMContentLoaded', function () {
 
-    // ====================  YOUR FIREBASE CONFIG  ====================
     const firebaseConfig = {
       apiKey: "AIzaSyDu8Rjp14X8-cAXCbE500CS5IeMWo7dbiM",
       authDomain: "bogs-bogs-bogs.firebaseapp.com",
@@ -156,12 +128,10 @@
       messagingSenderId: "880993972404",
       appId: "1:880993972404:web:d5ebce80e3da530614e7e1"
     };
-    // ===============================================================
 
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
-    // ---- The five questions. Edit text/options here to change the survey. ----
     const QUESTIONS = [
       {
         id:'peatlands', num:'01', theme:'Peatlands', type:'choice',
@@ -213,30 +183,30 @@
     const surveyEl = document.getElementById('survey');
     const statusEl = document.getElementById('status');
 
-    // Build each question as a <section>
     let prevTheme = null;
     QUESTIONS.forEach(function(Q){
       const sec = document.createElement('section');
+      sec.className = 'cat-section';
+      sec.id = Q.id;
       const voted = localStorage.getItem('bogsSurvey_' + Q.id);
       const showLabel = Q.theme !== prevTheme; prevTheme = Q.theme;
-      const labelHtml = showLabel ? ('<span class="num">' + Q.num + '</span><br>' + Q.theme) : '';
+      const headHtml = showLabel
+        ? ('<div class="cat-head"><span class="idx">' + Q.num + '</span><h2>' + Q.theme + '</h2></div>')
+        : '';
       sec.innerHTML =
-        '<div class="wrap"><div class="section-grid">' +
-          '<div class="section-label">' + labelHtml + '</div>' +
-          '<div><h2 class="q-text">' + Q.q + '</h2><div id="input-' + Q.id + '"></div>' +
-          '<div class="results" id="results-' + Q.id + '" hidden></div>' +
-          '<p class="note" id="note-' + Q.id + '"></p></div>' +
-        '</div></div>';
+        headHtml +
+        '<p class="q-text">' + Q.q + '</p>' +
+        '<div id="input-' + Q.id + '"></div>' +
+        '<div class="results" id="results-' + Q.id + '" hidden></div>' +
+        '<p class="note" id="note-' + Q.id + '"></p>';
       surveyEl.appendChild(sec);
       renderInput(Q);
-      // Live listener for this question's whole node
       database.ref('survey/' + Q.id).on('value', function(snap){
         renderResults(Q, snap.val() || {});
       });
       if(voted) lockQuestion(Q, voted);
     });
 
-    // ---- Render the input area for a question ----
     function renderInput(Q){
       const box = document.getElementById('input-' + Q.id);
       if(Q.type === 'choice'){
@@ -251,7 +221,6 @@
         });
         box.appendChild(opts);
       } else {
-        // slider (continuous 1..max) or steps (discrete labelled stops)
         const isSteps = Q.type === 'steps';
         const min = isSteps ? 0 : Q.min;
         const max = isSteps ? Q.steps.length - 1 : Q.max;
@@ -286,7 +255,6 @@
       }
     }
 
-    // ---- Record a vote: read once, then set count + 1 (tutorial pattern) ----
     function vote(Q, bucketKey){
       if(localStorage.getItem('bogsSurvey_' + Q.id)) return;
       const ref = database.ref('survey/' + Q.id + '/' + bucketKey);
@@ -300,7 +268,6 @@
         .catch(function(err){ console.error(err); toast('Could not save your answer. Try again.', true); });
     }
 
-    // ---- Lock a question after answering ----
     function lockQuestion(Q, chosen){
       const box = document.getElementById('input-' + Q.id);
       if(Q.type === 'choice'){
@@ -317,12 +284,10 @@
       if(note) note.textContent = 'Thanks — live results shown above. One answer per visitor.';
     }
 
-    // ---- Render a question's results from its data node ----
     function renderResults(Q, data){
       const box = document.getElementById('results-' + Q.id);
 
       if(Q.type === 'slider'){
-        // distribution 1..max + average
         let total = 0, sum = 0, max = 0;
         const c = {};
         for(let v = Q.min; v <= Q.max; v++){ const n = data[v] || 0; c[v] = n; total += n; sum += v * n; if(n > max) max = n; }
@@ -342,7 +307,6 @@
         return;
       }
 
-      // choice OR steps -> horizontal bars
       const items = Q.type === 'steps' ? Q.steps : Q.options;
       let total = 0, max = 0;
       items.forEach(function(it){ const n = data[it.key] || 0; total += n; if(n > max) max = n; });
@@ -359,7 +323,6 @@
                       '<div class="total">Responses <span>' + total + '</span></div>';
     }
 
-    // ---- Connection status ----
     database.ref('.info/connected').on('value', function(snap){
       statusEl.innerHTML = snap.val() ? '<span class="ok">● Connected</span>' : '<span class="bad">● Disconnected</span>';
     });
