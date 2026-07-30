@@ -6,6 +6,8 @@
   <title>bogs — bogs · Data, AI &amp; the Divide</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="catalogue.css" />
+  <script src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js"></script>
+  <link href="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -32,6 +34,7 @@
         <a href="#subsea"><span class="idx">C</span>Subsea</a>
         <a href="#access"><span class="idx">D</span>Access</a>
         <a href="#power"><span class="idx">E</span>Power &amp; Land</a>
+        <a href="#divide-map"><span class="idx">F</span>Digital Divide Map</a>
       </div>
     </aside>
 
@@ -116,12 +119,35 @@
     </div>
   </div>
 
+  <section id="divide-map" class="divide-map">
+    <div class="dm-head"><span class="idx">F</span><h2>Global digital divide</h2></div>
+    <p class="dm-lede">Median fixed-broadband download speed by country &mdash; the divide &mdash; with
+      global data-centre locations and submarine-cable routes over a dark base. Click any country,
+      cable or data centre.</p>
+
+    <div class="map-shell">
+      <div id="dmap"></div>
+      <div class="map-panel">
+        <p class="panel-title">Layers</p>
+        <label class="legend-row"><input type="checkbox" id="t-dc" checked /><span class="swatch swatch-dc"></span><span>Data centres</span></label>
+        <label class="legend-row"><input type="checkbox" id="t-cables" checked /><span class="swatch swatch-cable2"></span><span>Submarine cables</span></label>
+        <label class="legend-row"><input type="checkbox" id="t-speed" checked /><span class="swatch swatch-speed"></span><span>Internet speed</span></label>
+        <p class="panel-scale"><span>slow</span><span class="grad"></span><span>fast</span></p>
+      </div>
+    </div>
+
+    <p class="dm-sources">Sources: Internet speed &mdash; Ookla Speedtest Global Index (median fixed download).
+      Data centres &mdash; OpenStreetMap (ODbL). Cables &mdash; TeleGeography. Base &copy; OpenStreetMap contributors, &copy; CARTO.</p>
+  </section>
+
   <footer>
     <div class="footer-inner" style="max-width:1600px;margin:0 auto;padding:0 40px;">
       <span>Summer Semester</span>
       <span>2026</span>
     </div>
   </footer>
+
+  <script src="data-ai-map.js"></script>
 
 </body>
 </html>

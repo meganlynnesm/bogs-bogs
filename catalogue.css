@@ -172,3 +172,64 @@
   .subnav-inner { flex-direction: row; flex-wrap: wrap; gap: 16px; padding: 16px 0; }
   .catalogue { grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); }
 }
+
+/* ---- digital-divide map section ---- */
+.divide-map {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 40px 40px 72px;
+  border-top: 1px solid var(--faint);
+}
+
+.dm-head { display: flex; align-items: baseline; gap: 12px; margin: 0 0 6px; }
+.dm-head .idx { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.dm-head h2 { margin: 0; font-size: 15px; font-weight: 500; text-transform: uppercase; }
+.dm-lede { margin: 0 0 20px; max-width: 640px; color: var(--muted); font-size: 15px; }
+
+.map-shell {
+  position: relative;
+  width: 100%;
+  height: 72vh;
+  min-height: 460px;
+  border: 1px solid var(--faint);
+  background: #0c0c0c;
+  overflow: hidden;
+}
+#dmap { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.map-panel {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 2;
+  background: rgba(12, 12, 12, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #eaeaea;
+  padding: 12px 14px;
+  font-size: 12px;
+  line-height: 1.5;
+  max-width: 220px;
+  backdrop-filter: blur(4px);
+}
+.panel-title { margin: 0 0 8px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #9a9a9a; }
+.legend-row { display: flex; align-items: center; gap: 8px; margin: 6px 0; cursor: pointer; }
+.legend-row input { accent-color: var(--accent); margin: 0; }
+.swatch { width: 14px; height: 14px; flex: 0 0 auto; border: 1px solid rgba(255, 255, 255, 0.25); }
+.swatch-dc { border-radius: 50%; background: #c22e69; }
+.swatch-cable2 { background: #cb5600; }
+.swatch-speed { background: linear-gradient(90deg, #2a1a40, #6a5a9c, #98a8d9, #eef2fb); }
+.panel-scale { margin: 10px 0 0; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; gap: 6px; color: #9a9a9a; font-size: 11px; }
+.panel-scale .grad { flex: 1; height: 8px; background: linear-gradient(90deg, #2a1a40, #6a5a9c, #98a8d9, #eef2fb); }
+
+.dm-sources { margin: 12px 0 0; font-size: 12px; line-height: 1.5; color: var(--muted); max-width: 720px; }
+
+.maplibregl-popup-content {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px; line-height: 1.5; color: var(--ink); border-radius: 0; padding: 12px 14px;
+}
+.maplibregl-popup-content strong { display: block; margin-bottom: 3px; color: var(--accent); }
+
+@media (max-width: 800px) {
+  .divide-map { padding: 32px 22px 56px; }
+  .map-shell { height: 62vh; }
+}
