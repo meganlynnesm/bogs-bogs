@@ -5,17 +5,33 @@
   --bg: #ffffff;
   --maxw: 1100px;
 
-  /* ---- Project palette ---- */
-  --pink: #c22e69;              /* focal — magma magenta (heat-map pink) */
-  --blue: #98a8d9;             /* secondary — cornflower blue (unassigned) */
-  --yellow: #e4c259;           /* secondary — Cowslip Meadow (yellow) */
-  --yellowgreen-dark: #828211;  /* secondary — Fields of Elation · peatlands */
-  --purple: #62496f;           /* secondary — Wasteland */
-  --tiger: #cb5600;            /* secondary — Tibetan Tiger (burnt orange) · cables */
-  --ochre: #ac6f20;            /* secondary — Ochre */
+  /* ---- base palette ---- */
+  --pink:   #c22e69;  /* magma magenta */
+  --purple: #62496f;  /* wasteland */
+  --yellow: #e4c259;  /* cowslip meadow — the shared thread */
+  --orange: #cb5600;  /* tibetan tiger */
+  --ochre:  #ac6f20;
+  --blue:   #98a8d9;  /* cornflower */
+  --green:  #828211;  /* fields of elation (olive-green) */
 
-  --accent: var(--pink);       /* focal accent used across the site */
+  /* ---- thematic triads ---- */
+  /* Data, AI & the Divide */
+  --ai-1: var(--pink);      --ai-2: var(--purple);    --ai-3: var(--yellow);
+  /* Regeneration */
+  --regen-1: var(--orange); --regen-2: var(--yellow); --regen-3: var(--ochre);
+  /* Obsolescence */
+  --obs-1: var(--blue);     --obs-2: var(--green);    --obs-3: var(--yellow);
+
+  /* aliases (back-compat) */
+  --tiger: var(--orange);
+  --yellowgreen-dark: var(--green);
+
+  --accent: var(--pink);    /* global focal accent (Data/AI is the primary theme) */
 }
+
+/* per-theme accent overrides */
+body.theme-regen { --accent: var(--regen-1); }  /* orange */
+body.theme-obs { --accent: var(--obs-1); }      /* blue */
 
 * { box-sizing: border-box; }
 

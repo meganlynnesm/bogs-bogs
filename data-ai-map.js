@@ -5,8 +5,8 @@
 //   Submarine cables (TeleGeography) ...... tiger orange
 // ---------------------------------------------------------------------------
 
-const PINK = "#c22e69";
-const CABLE = "#cb5600";
+const YELLOW = "#e4c259"; // data centres (ai-3)
+const CABLE = "#62496f";  // submarine cables — purple (ai-2)
 
 // token-free dark basemap (CARTO "dark_all")
 const basemapStyle = {
@@ -42,18 +42,18 @@ const map = new maplibregl.Map({
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-left");
 map.addControl(new maplibregl.ScaleControl(), "top-left");
 
-// low speed = dark purple, high speed = pale blue (cool "connectivity" ramp).
+// low speed = dark maroon, high speed = pale pink (pink sequential ramp).
 // coalesce missing values to -1 so "no data" countries read grey.
 const speedColor = [
   "interpolate", ["linear"], ["coalesce", ["get", "speed_mbps"], -1],
   -1, "#2b2b2b",
   0, "#2b2b2b",
-  1, "#2a1a40",
-  25, "#4b3670",
-  60, "#6a5a9c",
-  120, "#98a8d9",
-  250, "#cdd9f2",
-  400, "#eef2fb",
+  1, "#2a0f1c",
+  25, "#6e1a3e",
+  60, "#a5285f",
+  120, "#c22e69",
+  250, "#e06a97",
+  400, "#f6cddd",
 ];
 
 map.on("load", () => {
@@ -103,7 +103,7 @@ map.on("load", () => {
     type: "circle",
     source: "datacentres",
     paint: {
-      "circle-color": PINK,
+      "circle-color": YELLOW,
       "circle-radius": ["interpolate", ["linear"], ["zoom"], 1, 1.6, 6, 3, 12, 6],
       "circle-stroke-width": ["interpolate", ["linear"], ["zoom"], 1, 0.3, 6, 0.9],
       "circle-stroke-color": "#ffffff",

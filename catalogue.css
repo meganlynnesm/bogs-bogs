@@ -215,11 +215,17 @@
 .legend-row { display: flex; align-items: center; gap: 8px; margin: 6px 0; cursor: pointer; }
 .legend-row input { accent-color: var(--accent); margin: 0; }
 .swatch { width: 14px; height: 14px; flex: 0 0 auto; border: 1px solid rgba(255, 255, 255, 0.25); }
-.swatch-dc { border-radius: 50%; background: #c22e69; }
-.swatch-cable2 { background: #cb5600; }
-.swatch-speed { background: linear-gradient(90deg, #2a1a40, #6a5a9c, #98a8d9, #eef2fb); }
+.swatch-dc { border-radius: 50%; background: #e4c259; }
+.swatch-cable2 { background: #62496f; }
+.swatch-speed { background: linear-gradient(90deg, #2a0f1c, #a5285f, #c22e69, #f6cddd); }
+.swatch-forest { background: #5e7d2f; }
+.swatch-crop { background: #e4c259; }
+.swatch-open { background: #ac6f20; }
+.swatch-peat3 { background: #6872b5; }
+.legend-key { display: flex; flex-direction: column; gap: 5px; margin: 2px 0 6px 22px; }
+.legend-key > span { display: flex; align-items: center; gap: 8px; }
 .panel-scale { margin: 10px 0 0; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; gap: 6px; color: #9a9a9a; font-size: 11px; }
-.panel-scale .grad { flex: 1; height: 8px; background: linear-gradient(90deg, #2a1a40, #6a5a9c, #98a8d9, #eef2fb); }
+.panel-scale .grad { flex: 1; height: 8px; background: linear-gradient(90deg, #2a0f1c, #a5285f, #c22e69, #f6cddd); }
 
 .dm-sources { margin: 12px 0 0; font-size: 12px; line-height: 1.5; color: var(--muted); max-width: 720px; }
 
