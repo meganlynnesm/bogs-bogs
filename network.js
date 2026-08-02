@@ -13,9 +13,9 @@ const GROUPS = [
   { id: "power",  name: "Power & land",  reg: "land", href: "data-ai.html#power",        note: "Substations, cooling towers, water intake — and peatland, listed as component 32. The seam of the project.", also: "data" },
   { id: "cover",  name: "Land cover",    reg: "land", href: "regeneration.html#landcover-map", note: "Dominant land-cover type, with the world's peatlands laid over the top." },
   { id: "sites",  name: "Case sites",    reg: "land", href: "regeneration.html#ireland", note: "Ireland, Virginia and Ohio — three grounds where peat and data centres share a map.", also: "data" },
-  { id: "life",   name: "Lifecycle",     reg: "time", href: "research.html#obsolesence", note: "How long this infrastructure lasts, against how long the ground remembers." },
-  { id: "persist",name: "Persistence",   reg: "time", href: "research.html#obsolesence", note: "What survives: carbon in peat, data in archives, concrete in the ground." },
-  { id: "myst",   name: "Mysticism",     reg: "time", href: "research.html#obsolesence", note: "The gap between what the technology does and what we imagine it will do for us.", also: "data" }
+  { id: "life",   name: "Lifecycle",     reg: "time", href: "obsolescence.html", note: "How long this infrastructure lasts, against how long the ground remembers." },
+  { id: "persist",name: "Persistence",   reg: "time", href: "obsolescence.html", note: "What survives: carbon in peat, data in archives, concrete in the ground." },
+  { id: "myst",   name: "Mysticism",     reg: "time", href: "obsolescence.html", note: "The gap between what the technology does and what we imagine it will do for us.", also: "data" }
 ];
 
 const ITEMS = [
