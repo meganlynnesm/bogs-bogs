@@ -95,7 +95,8 @@
   outline: 1px solid transparent;
 }
 
-.cat-item.span2 { grid-column: span 2; }
+/* every catalogue frame is the same square size (span2 no longer widens) */
+.cat-item.span2 { grid-column: span 1; }
 
 /* catalogue tiles used as links (research page themes) */
 a.cat-item { text-decoration: none; color: inherit; }
