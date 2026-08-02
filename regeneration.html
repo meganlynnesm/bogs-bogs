@@ -69,10 +69,10 @@
 
   <section id="ireland" class="divide-map">
     <div class="dm-head"><span class="idx">B</span><h2>Ireland &mdash; peat &amp; land cover</h2></div>
-    <p class="dm-lede">CORINE 2018. Peat bogs (dark blue) dominate the western Atlantic seaboard and the
-      midlands &mdash; the degraded ground this project regenerates &mdash; with moors &amp; heathland
-      alongside. Pasture in yellow, forest green, Dublin and towns in red.</p>
-    <figure class="lc-figure"><img src="corine_ireland.png" alt="CORINE 2018 land cover of Ireland, peat bogs prominent" /></figure>
+    <p class="dm-lede">CORINE 2018, shown as a hex overview coloured by dominant land type &mdash; peat
+      bogs (dark blue) dominate the west and midlands. <strong>Click any hex to peel it back and reveal
+      the detailed land-cover map beneath.</strong></p>
+    <div class="map-shell"><div id="map-ireland"></div></div>
     <div class="lc-key">
       <span><span class="swatch" style="background:#4d4dff"></span>Peat bogs</span>
       <span><span class="swatch" style="background:#a6ff80"></span>Moors &amp; heathland</span>
@@ -87,10 +87,10 @@
 
   <section id="virginia" class="divide-map">
     <div class="dm-head"><span class="idx">C</span><h2>Virginia &mdash; land cover</h2></div>
-    <p class="dm-lede">NLCD 2021. The red developed cluster in the north-east is "Data Center Alley"
-      (Loudoun / Northern Virginia); Richmond and Norfolk also read as developed. Forest in green,
-      cropland tan, the Chesapeake Bay in blue.</p>
-    <figure class="lc-figure"><img src="nlcd_virginia.png" alt="NLCD 2021 land cover of Virginia" /></figure>
+    <p class="dm-lede">NLCD 2021, as a hex overview by dominant land type. The developed cluster in the
+      north-east is "Data Center Alley" (Loudoun / Northern Virginia). <strong>Click any hex to reveal
+      the detailed land cover beneath.</strong></p>
+    <div class="map-shell"><div id="map-virginia"></div></div>
     <div class="lc-key">
       <span><span class="swatch" style="background:#cf4a3a"></span>Developed</span>
       <span><span class="swatch" style="background:#38814e"></span>Forest</span>
@@ -103,9 +103,10 @@
 
   <section id="ohio" class="divide-map">
     <div class="dm-head"><span class="idx">D</span><h2>Ohio &mdash; land cover</h2></div>
-    <p class="dm-lede">NLCD 2021. Columbus and the New Albany data-centre cluster show as developed
-      (red) amid Ohio's cropland (tan) and forest (green) &mdash; a landscape being rewired for data.</p>
-    <figure class="lc-figure"><img src="nlcd_ohio.png" alt="NLCD 2021 land cover of Ohio" /></figure>
+    <p class="dm-lede">NLCD 2021, as a hex overview by dominant land type. Columbus and the New Albany
+      data-centre cluster show as developed amid Ohio's cropland and forest. <strong>Click any hex to
+      reveal the detailed land cover beneath.</strong></p>
+    <div class="map-shell"><div id="map-ohio"></div></div>
     <div class="lc-key">
       <span><span class="swatch" style="background:#cf4a3a"></span>Developed</span>
       <span><span class="swatch" style="background:#38814e"></span>Forest</span>
@@ -127,6 +128,7 @@
   </footer>
 
   <script src="regeneration-map.js"></script>
+  <script src="regions-hex.js"></script>
 
 </body>
 </html>

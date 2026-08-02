@@ -1,8 +1,6 @@
 // ---------------------------------------------------------------------------
 // Regeneration — global land-cover map (MapLibre + CARTO dark base).
-//   Land cover (forest % of land, country choropleth) ... the land
-//   Peatlands (GFW raster) ............................ degraded land to regenerate
-// Regeneration triad: orange / yellow / ochre.
+//   Land cover (dominant type, country choropleth) + GFW peatlands raster.
 // ---------------------------------------------------------------------------
 
 const PEAT_TILES =
@@ -41,7 +39,6 @@ const map = new maplibregl.Map({
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-left");
 map.addControl(new maplibregl.ScaleControl(), "top-left");
 
-// categorical land-cover types (dominant land type per country)
 const landColor = [
   "match", ["get", "land_type"],
   "Forest", "#5e7d2f",
@@ -51,7 +48,6 @@ const landColor = [
 ];
 
 map.on("load", () => {
-  // ---- land cover (forest %) choropleth -----------------------------------
   map.addSource("land", { type: "geojson", data: "land_cover.geojson" });
   map.addLayer({
     id: "land-fill",
@@ -66,7 +62,6 @@ map.on("load", () => {
     paint: { "line-color": "#0c0c0c", "line-width": 0.4 },
   });
 
-  // ---- peatlands (GFW raster, hue-rotated to green) -----------------------
   map.addSource("peatlands", {
     type: "raster",
     tiles: [PEAT_TILES],
@@ -79,14 +74,9 @@ map.on("load", () => {
     id: "peatlands-raster",
     type: "raster",
     source: "peatlands",
-    paint: { "raster-opacity": 0.7 }, // native periwinkle — distinct from the warm land types
+    paint: { "raster-opacity": 0.7 },
   });
 
-  wirePopups();
-  wireToggles();
-});
-
-function wirePopups() {
   map.on("click", "land-fill", (e) => {
     const p = e.features[0].properties || {};
     const lt = p.land_type || "no data";
@@ -99,12 +89,9 @@ function wirePopups() {
       .setHTML(`<strong>${p.ADMIN || "Country"}</strong>Dominant land type: ${lt}${detail}`)
       .addTo(map);
   });
-
   map.on("mouseenter", "land-fill", () => (map.getCanvas().style.cursor = "pointer"));
   map.on("mouseleave", "land-fill", () => (map.getCanvas().style.cursor = ""));
-}
 
-function wireToggles() {
   const bind = (id, layers) => {
     const box = document.getElementById(id);
     if (!box) return;
@@ -115,4 +102,7 @@ function wireToggles() {
   };
   bind("t-land", ["land-fill", "land-outline"]);
   bind("t-peat", ["peatlands-raster"]);
-}
+
+  // ensure correct sizing now that it sits inside the content column
+  setTimeout(() => map.resize(), 200);
+});

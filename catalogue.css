@@ -199,7 +199,7 @@
   background: #0c0c0c;
   overflow: hidden;
 }
-#dmap { position: absolute; inset: 0; width: 100%; height: 100%; }
+#dmap, #rmap, #map-ireland, #map-virginia, #map-ohio { position: absolute; inset: 0; width: 100%; height: 100%; }
 
 .map-panel {
   position: absolute;
