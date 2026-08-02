@@ -97,6 +97,14 @@
 
 .cat-item.span2 { grid-column: span 2; }
 
+/* catalogue tiles used as links (research page themes) */
+a.cat-item { text-decoration: none; color: inherit; }
+
+/* research page — three larger, linked theme tiles */
+.catalogue-themes { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.catalogue-themes .cat-item { aspect-ratio: 4 / 3; cursor: pointer; }
+@media (max-width: 700px) { .catalogue-themes { grid-template-columns: 1fr; } }
+
 .cat-item img {
   width: 100%;
   height: 100%;
@@ -205,6 +213,27 @@
   overflow: hidden;
 }
 #dmap, #rmap, #map-ireland, #map-virginia, #map-ohio { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* single toggle for the whole hex layer (regeneration case-study maps) */
+.hex-toggle {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(12, 12, 12, 0.82);
+  color: #eaeaea;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 8px 13px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.hex-toggle:hover { border-color: var(--accent); color: #fff; }
+.hex-toggle.active { border-color: var(--accent); color: var(--accent); }
 
 .map-panel {
   position: absolute;

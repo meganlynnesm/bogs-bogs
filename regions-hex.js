@@ -1,8 +1,9 @@
 // ---------------------------------------------------------------------------
-// Regeneration case studies — hex-reveal maps (Ireland, Virginia, Ohio).
+// Regeneration case studies — hex maps (Ireland, Virginia, Ohio).
 // Detailed land cover (CORINE / NLCD image) sits beneath an H3 hex layer
-// coloured by dominant land type; click a hex to peel it back and reveal the
-// detailed map underneath. IIFE-scoped to avoid clashing with the global map.
+// coloured by dominant land type. One toggle button hides/shows the whole
+// hex layer at once, revealing the detailed map beneath.
+// IIFE-scoped to avoid clashing with the global map.
 // ---------------------------------------------------------------------------
 (function () {
   const CARTO = {
@@ -32,8 +33,6 @@
     { id: "map-ohio",     bbox: [-85.0, 38.3, -80.5, 42.0], img: "nlcd_ohio.png",     hex: "ohio_hex.geojson" },
   ];
 
-  const revealed = ["case", ["boolean", ["feature-state", "revealed"], false], 0, 1];
-
   REGIONS.forEach(function (r) {
     if (!document.getElementById(r.id)) return;
     const w = r.bbox[0], s = r.bbox[1], e = r.bbox[2], n = r.bbox[3];
@@ -53,34 +52,36 @@
       map.addLayer({ id: "lc", type: "raster", source: "lc", paint: { "raster-opacity": 1 } });
 
       // hex overlay coloured by dominant land type
-      map.addSource("hex", { type: "geojson", data: r.hex, generateId: true });
+      map.addSource("hex", { type: "geojson", data: r.hex });
       map.addLayer({
         id: "hex-fill",
         type: "fill",
         source: "hex",
-        paint: {
-          "fill-color": ["get", "color"],
-          "fill-opacity": ["*", 0.95, revealed],
-        },
+        paint: { "fill-color": ["get", "color"], "fill-opacity": 0.92 },
       });
       map.addLayer({
         id: "hex-line",
         type: "line",
         source: "hex",
-        paint: {
-          "line-color": "#0c0c0c",
-          "line-width": 0.4,
-          "line-opacity": ["case", ["boolean", ["feature-state", "revealed"], false], 0.15, 0.45],
-        },
+        paint: { "line-color": "#0c0c0c", "line-width": 0.4, "line-opacity": 0.4 },
       });
 
-      map.on("click", "hex-fill", function (ev) {
-        const f = ev.features[0];
-        const cur = map.getFeatureState({ source: "hex", id: f.id }).revealed;
-        map.setFeatureState({ source: "hex", id: f.id }, { revealed: !cur });
+      // single toggle: hide/show the whole hex layer at once
+      const shell = document.getElementById(r.id).parentElement;
+      const btn = document.createElement("button");
+      btn.className = "hex-toggle";
+      btn.type = "button";
+      btn.textContent = "Reveal detailed map";
+      shell.appendChild(btn);
+      let shown = true;
+      btn.addEventListener("click", function () {
+        shown = !shown;
+        const v = shown ? "visible" : "none";
+        map.setLayoutProperty("hex-fill", "visibility", v);
+        map.setLayoutProperty("hex-line", "visibility", v);
+        btn.textContent = shown ? "Reveal detailed map" : "Show land-type hexes";
+        btn.classList.toggle("active", !shown);
       });
-      map.on("mouseenter", "hex-fill", function () { map.getCanvas().style.cursor = "pointer"; });
-      map.on("mouseleave", "hex-fill", function () { map.getCanvas().style.cursor = ""; });
 
       setTimeout(function () { map.resize(); }, 200);
     });

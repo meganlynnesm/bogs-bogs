@@ -14,6 +14,17 @@
   text-transform: uppercase;
 }
 
+/* theme colour tags (Data = pink, Regeneration = orange, Obsolescence = blue) */
+.gal-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 9px; }
+.gal-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+.gal-tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.gal-tag.t-data::before  { background: var(--pink); }
+.gal-tag.t-regen::before { background: var(--orange); }
+.gal-tag.t-obs::before   { background: var(--blue); }
+
 /* ---- A · Books — cover grid ---------------------------------------- */
 .gal-books {
   display: grid;
