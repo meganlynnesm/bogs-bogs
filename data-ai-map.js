@@ -8,25 +8,13 @@
 const YELLOW = "#e4c259"; // data centres (ai-3)
 const CABLE = "#62496f";  // submarine cables — purple (ai-2)
 
-// token-free dark basemap (CARTO "dark_all")
+// ink basemap — black water (background) + white land (drawn from the
+// country polygons below, so no external tiles are needed).
 const basemapStyle = {
   version: 8,
-  sources: {
-    carto: {
-      type: "raster",
-      tiles: [
-        "https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        "https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        "https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        "https://d.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-      ],
-      tileSize: 256,
-      attribution: "© OpenStreetMap contributors © CARTO",
-    },
-  },
+  sources: {},
   layers: [
-    { id: "bg", type: "background", paint: { "background-color": "#0c0c0c" } },
-    { id: "carto", type: "raster", source: "carto" },
+    { id: "bg", type: "background", paint: { "background-color": "#000000" } },
   ],
 };
 
@@ -43,11 +31,11 @@ map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-le
 map.addControl(new maplibregl.ScaleControl(), "top-left");
 
 // low speed = dark maroon, high speed = pale pink (pink sequential ramp).
-// coalesce missing values to -1 so "no data" countries read grey.
+// coalesce missing values to -1 so "no data" countries read as plain white land.
 const speedColor = [
   "interpolate", ["linear"], ["coalesce", ["get", "speed_mbps"], -1],
-  -1, "#2b2b2b",
-  0, "#2b2b2b",
+  -1, "#ffffff",
+  0, "#ffffff",
   1, "#2a0f1c",
   25, "#6e1a3e",
   60, "#a5285f",
@@ -57,19 +45,25 @@ const speedColor = [
 ];
 
 map.on("load", () => {
-  // ---- internet speed choropleth (bottom) --------------------------------
+  // ---- white land base + internet speed choropleth (bottom) --------------
   map.addSource("speed", { type: "geojson", data: "internet_speed.geojson" });
+  map.addLayer({
+    id: "land-base",
+    type: "fill",
+    source: "speed",
+    paint: { "fill-color": "#ffffff" },
+  });
   map.addLayer({
     id: "speed-fill",
     type: "fill",
     source: "speed",
-    paint: { "fill-color": speedColor, "fill-opacity": 0.72 },
+    paint: { "fill-color": speedColor, "fill-opacity": 0.82 },
   });
   map.addLayer({
     id: "speed-outline",
     type: "line",
     source: "speed",
-    paint: { "line-color": "#0c0c0c", "line-width": 0.4 },
+    paint: { "line-color": "#c9c4bb", "line-width": 0.4 },
   });
 
   // ---- submarine cables --------------------------------------------------
@@ -105,9 +99,9 @@ map.on("load", () => {
     paint: {
       "circle-color": YELLOW,
       "circle-radius": ["interpolate", ["linear"], ["zoom"], 1, 1.6, 6, 3, 12, 6],
-      "circle-stroke-width": ["interpolate", ["linear"], ["zoom"], 1, 0.3, 6, 0.9],
-      "circle-stroke-color": "#ffffff",
-      "circle-opacity": 0.9,
+      "circle-stroke-width": ["interpolate", ["linear"], ["zoom"], 1, 0.4, 6, 1.1],
+      "circle-stroke-color": "#7a5a12",
+      "circle-opacity": 0.95,
     },
   });
 

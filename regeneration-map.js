@@ -6,24 +6,13 @@
 const PEAT_TILES =
   "https://tiles.globalforestwatch.org/gfw_peatlands/v20230315/default/{z}/{x}/{y}.png";
 
+// ink basemap — black water (background) + white land (drawn from the
+// country polygons below, so no external tiles are needed).
 const basemapStyle = {
   version: 8,
-  sources: {
-    carto: {
-      type: "raster",
-      tiles: [
-        "https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        "https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        "https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        "https://d.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-      ],
-      tileSize: 256,
-      attribution: "© OpenStreetMap contributors © CARTO",
-    },
-  },
+  sources: {},
   layers: [
-    { id: "bg", type: "background", paint: { "background-color": "#0c0c0c" } },
-    { id: "carto", type: "raster", source: "carto" },
+    { id: "bg", type: "background", paint: { "background-color": "#000000" } },
   ],
 };
 
@@ -44,22 +33,28 @@ const landColor = [
   "Forest", "#5e7d2f",
   "Cropland", "#e4c259",
   "Open land", "#ac6f20",
-  /* no data */ "#2b2b2b",
+  /* no data */ "#ffffff",
 ];
 
 map.on("load", () => {
   map.addSource("land", { type: "geojson", data: "land_cover.geojson" });
   map.addLayer({
+    id: "land-base",
+    type: "fill",
+    source: "land",
+    paint: { "fill-color": "#ffffff" },
+  });
+  map.addLayer({
     id: "land-fill",
     type: "fill",
     source: "land",
-    paint: { "fill-color": landColor, "fill-opacity": 0.75 },
+    paint: { "fill-color": landColor, "fill-opacity": 0.82 },
   });
   map.addLayer({
     id: "land-outline",
     type: "line",
     source: "land",
-    paint: { "line-color": "#0c0c0c", "line-width": 0.4 },
+    paint: { "line-color": "#c9c4bb", "line-width": 0.4 },
   });
 
   map.addSource("peatlands", {

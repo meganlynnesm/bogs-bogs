@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bogs — bogs · Research Gallery</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="catalogue.css" />
+  <link rel="stylesheet" href="research-gallery.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="menu.html">Menu</a>
+      <a href="research.html#abstract">Abstract</a>
+      <a href="data-ai.html">Data, AI &amp; the Divide</a>
+      <a href="regeneration.html">Regeneration</a>
+      <a href="research.html#obsolesence">Obsolesence</a>
+      <a href="research-foundation.html">Map</a>
+      <a href="research-gallery.html" class="active">Gallery</a>
+      <a href="Quiz/index.html">Survey</a>
+      <span class="nav-title">research foundation</span>
+    </div>
+  </nav>
+
+  <div class="page-grid">
+
+    <!-- secondary navigation — left side (same as other pages) -->
+    <aside class="subnav">
+      <div class="subnav-inner">
+        <a href="#books"><span class="idx">A</span>Books</a>
+        <a href="#websites"><span class="idx">B</span>Websites</a>
+        <a href="#headlines"><span class="idx">C</span>Headlines</a>
+      </div>
+    </aside>
+
+    <div class="cat-main">
+      <div class="page-head">
+        <p class="eyebrow">06 &nbsp;·&nbsp; Research Gallery</p>
+        <h1>research<span class="sqdot"></span>gallery</h1>
+        <p class="lede">A living reading room &mdash; the books, sites and headlines feeding this
+          project on data, AI and peatland regeneration. Every item links out.</p>
+      </div>
+
+      <!-- ================================================================
+           HOW TO ADD AN ITEM
+           - Books:     duplicate a .gal-book block; set the link href, the
+                        <img src> to a cover in gallery-img/, and the title/author.
+           - Websites:  duplicate a .gal-site block; set href, thumb <img>, name,
+                        url and a one-line note.
+           - Headlines: duplicate a .gal-headline block; set href, source·date
+                        and the headline text.
+           To show a real image, replace the <span class="gal-ph">…</span>
+           placeholder with  <img src="gallery-img/your-file.jpg" alt="…" />.
+           =============================================================== -->
+
+      <!-- A — BOOKS -->
+      <section id="books" class="gal-section">
+        <div class="cat-head"><span class="idx">A</span><h2>Books</h2></div>
+        <p class="gal-lede">Covers link to the publisher or a reference page.</p>
+        <div class="gal-books">
+
+          <a class="gal-book" href="#" target="_blank" rel="noopener">
+            <span class="gal-cover"><span class="gal-ph">cover</span></span>
+            <span class="gal-book-meta"><strong>Book title</strong><span>Author &middot; Year</span></span>
+          </a>
+
+          <a class="gal-book" href="#" target="_blank" rel="noopener">
+            <span class="gal-cover"><span class="gal-ph">cover</span></span>
+            <span class="gal-book-meta"><strong>Book title</strong><span>Author &middot; Year</span></span>
+          </a>
+
+          <a class="gal-book" href="#" target="_blank" rel="noopener">
+            <span class="gal-cover"><span class="gal-ph">cover</span></span>
+            <span class="gal-book-meta"><strong>Book title</strong><span>Author &middot; Year</span></span>
+          </a>
+
+          <a class="gal-book" href="#" target="_blank" rel="noopener">
+            <span class="gal-cover"><span class="gal-ph">cover</span></span>
+            <span class="gal-book-meta"><strong>Book title</strong><span>Author &middot; Year</span></span>
+          </a>
+
+          <!-- example with a real cover image:
+          <a class="gal-book" href="https://publisher.example/book" target="_blank" rel="noopener">
+            <span class="gal-cover"><img src="gallery-img/my-cover.jpg" alt="Book title" /></span>
+            <span class="gal-book-meta"><strong>Book title</strong><span>Author &middot; Year</span></span>
+          </a>
+          -->
+
+        </div>
+      </section>
+
+      <!-- B — WEBSITES -->
+      <section id="websites" class="gal-section">
+        <div class="cat-head"><span class="idx">B</span><h2>Websites</h2></div>
+        <p class="gal-lede">Projects, archives and tools referenced throughout the research.</p>
+        <div class="gal-sites">
+
+          <a class="gal-site" href="#" target="_blank" rel="noopener">
+            <span class="gal-thumb"><span class="gal-ph">img</span></span>
+            <span class="gal-site-meta">
+              <strong>Site name</strong>
+              <span class="gal-url">example.com &#8599;</span>
+              <span class="gal-desc">One line on what it is and why it matters here.</span>
+            </span>
+          </a>
+
+          <a class="gal-site" href="#" target="_blank" rel="noopener">
+            <span class="gal-thumb"><span class="gal-ph">img</span></span>
+            <span class="gal-site-meta">
+              <strong>Site name</strong>
+              <span class="gal-url">example.com &#8599;</span>
+              <span class="gal-desc">One line on what it is and why it matters here.</span>
+            </span>
+          </a>
+
+          <a class="gal-site" href="#" target="_blank" rel="noopener">
+            <span class="gal-thumb"><span class="gal-ph">img</span></span>
+            <span class="gal-site-meta">
+              <strong>Site name</strong>
+              <span class="gal-url">example.com &#8599;</span>
+              <span class="gal-desc">One line on what it is and why it matters here.</span>
+            </span>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- C — HEADLINES -->
+      <section id="headlines" class="gal-section">
+        <div class="cat-head"><span class="idx">C</span><h2>Headlines</h2></div>
+        <p class="gal-lede">Press coverage &mdash; each links to the original article.</p>
+        <div class="gal-headlines">
+
+          <a class="gal-headline" href="#" target="_blank" rel="noopener">
+            <span class="gal-source">Publication &middot; Year</span>
+            <span class="gal-hl">Headline of the article goes here<span class="gal-arrow">&#8599;</span></span>
+          </a>
+
+          <a class="gal-headline" href="#" target="_blank" rel="noopener">
+            <span class="gal-source">Publication &middot; Year</span>
+            <span class="gal-hl">Headline of the article goes here<span class="gal-arrow">&#8599;</span></span>
+          </a>
+
+          <a class="gal-headline" href="#" target="_blank" rel="noopener">
+            <span class="gal-source">Publication &middot; Year</span>
+            <span class="gal-hl">Headline of the article goes here<span class="gal-arrow">&#8599;</span></span>
+          </a>
+
+          <a class="gal-headline" href="#" target="_blank" rel="noopener">
+            <span class="gal-source">Publication &middot; Year</span>
+            <span class="gal-hl">Headline of the article goes here<span class="gal-arrow">&#8599;</span></span>
+          </a>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner" style="max-width:1600px;margin:0 auto;padding:0 40px;">
+      <span>Summer Semester</span>
+      <span>2026</span>
+    </div>
+  </footer>
+
+</body>
+</html>

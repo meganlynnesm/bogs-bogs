@@ -107,11 +107,24 @@ nav {
 
 .nav-inner {
   display: flex;
+  align-items: center;
   gap: 40px;
-  max-width: var(--maxw);
+  max-width: 1600px;          /* match .page-grid so links align with the side nav */
   margin: 0 auto;
   padding: 0 40px;
   overflow-x: auto;
+}
+
+/* right-aligned wordmark in the nav bar */
+.nav-title {
+  margin-left: auto;          /* push to the far right */
+  padding: 7px 0;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
 }
 
 nav a {

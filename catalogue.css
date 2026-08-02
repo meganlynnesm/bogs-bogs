@@ -158,6 +158,11 @@
   outline-color: var(--accent);
 }
 
+/* tiles holding a real image float with no tile background — the white
+   PNG background blends into the white page via mix-blend-mode: multiply */
+.cat-item:has(img) { background: transparent; }
+.cat-item:has(img):hover { background: transparent; outline-color: var(--accent); }
+
 .cat-item:hover .cat-num { color: var(--accent); }
 
 .cat-item:hover .cat-pop {
