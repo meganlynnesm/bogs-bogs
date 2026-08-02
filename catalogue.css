@@ -222,6 +222,21 @@
 .swatch-crop { background: #e4c259; }
 .swatch-open { background: #ac6f20; }
 .swatch-peat3 { background: #6872b5; }
+/* land-cover class swatches (ESA WorldCover) */
+.sw-tree { background: #387828; }
+.sw-grass { background: #c8d278; }
+.sw-crop { background: #e4c259; }
+.sw-built { background: #c22e69; }
+.sw-bare { background: #b89870; }
+.sw-water { background: #7896c8; }
+.sw-wet { background: #6e5a96; }
+.sw-dcpt { background: #fff; border-radius: 50%; }
+
+/* static land-cover figures (CORINE / NLCD) */
+.lc-figure { margin: 0; border: 1px solid var(--faint); background: #0c0c0c; }
+.lc-figure img { display: block; width: 100%; height: auto; }
+.lc-key { display: flex; flex-wrap: wrap; gap: 12px 20px; margin: 12px 0 0; font-size: 12px; color: var(--muted); }
+.lc-key > span { display: flex; align-items: center; gap: 7px; }
 .legend-key { display: flex; flex-direction: column; gap: 5px; margin: 2px 0 6px 22px; }
 .legend-key > span { display: flex; align-items: center; gap: 8px; }
 .panel-scale { margin: 10px 0 0; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; gap: 6px; color: #9a9a9a; font-size: 11px; }
