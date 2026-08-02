@@ -181,6 +181,10 @@
   border-top: 1px solid var(--faint);
 }
 
+/* when a map section sits inside the content column (beside the sticky sidebar) */
+.cat-main .divide-map { max-width: none; margin: 0; padding: 34px 0 8px; }
+.cat-main .divide-map:first-of-type { border-top: 0; }
+
 .dm-head { display: flex; align-items: baseline; gap: 12px; margin: 0 0 6px; }
 .dm-head .idx { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
 .dm-head h2 { margin: 0; font-size: 15px; font-weight: 500; text-transform: uppercase; }
