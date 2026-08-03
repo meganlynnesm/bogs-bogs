@@ -112,7 +112,7 @@
 
 /* Popup styling to match the site */
 .maplibregl-popup-content {
-  font-family: "Krub", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 1.5;
   color: var(--ink);

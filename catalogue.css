@@ -109,6 +109,18 @@ a.cat-item { text-decoration: none; color: inherit; }
 /* framed diagram (obsolescence readings tree, etc.) */
 .diagram-wrap { overflow-x: auto; border: 1px solid var(--faint); }
 .ob-tree { display: block; width: 100%; min-width: 820px; height: auto; }
+.diagram-wrap img { display: block; width: 100%; height: auto; }
+
+/* interactive force-graph (opening diagram) */
+#opennet { display: block; width: 100%; min-width: 920px; height: auto;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.on-node { stroke: var(--bg); stroke-width: 1.2; cursor: pointer; }
+.on-cap { fill: var(--ink); paint-order: stroke; stroke: var(--bg); stroke-width: 3; stroke-linejoin: round; pointer-events: none; font-weight: 500; }
+.on-cap.l1 { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+.on-cap.l2 { font-size: 8.5px; fill: var(--muted); }
+.on-hoverlabel { font-size: 12px; fill: var(--ink); paint-order: stroke; stroke: var(--bg); stroke-width: 3.5; stroke-linejoin: round; font-weight: 600; pointer-events: none; }
+.on-dim { opacity: 0.1; }
+#opennet circle, #opennet line, #opennet text { transition: opacity 0.15s ease; }
 
 .cat-item img {
   width: 100%;
@@ -288,7 +300,7 @@ a.cat-item { text-decoration: none; color: inherit; }
 .dm-sources { margin: 12px 0 0; font-size: 12px; line-height: 1.5; color: var(--muted); max-width: 720px; }
 
 .maplibregl-popup-content {
-  font-family: "Krub", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px; line-height: 1.5; color: var(--ink); border-radius: 0; padding: 12px 14px;
 }
 .maplibregl-popup-content strong { display: block; margin-bottom: 3px; color: var(--accent); }

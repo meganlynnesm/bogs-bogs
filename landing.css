@@ -4,7 +4,7 @@
    ===================================================================== */
 
 body.landing-page { background: #160f1c; }
-body.menu-page { background: var(--pink); overflow: hidden; }
+body.menu-page { background: #f4f1ea; overflow: hidden; }
 
 .mono {
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -126,7 +126,7 @@ body.menu-page { background: var(--pink); overflow: hidden; }
   height: 100vh;          /* exactly one screen — no side scroll */
   overflow: hidden;
   box-sizing: border-box;
-  background: var(--pink);
+  background: #f4f1ea;
   color: #1a1a1a; /* off-black */
   display: flex;
   flex-direction: column;
@@ -161,7 +161,7 @@ body.menu-page { background: var(--pink); overflow: hidden; }
 .menu-nav {
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   position: static;       /* cancel sticky/white/border inherited from style.css nav */
   background: transparent;
   border: 0;
@@ -172,26 +172,45 @@ body.menu-page { background: var(--pink); overflow: hidden; }
   margin: 0;
   padding: 0;
   width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
+.menu-list li { flex: 1; display: flex; }
+
+/* each tab is a full-width block in a palette colour */
 .menu-list a {
-  display: block;
-  padding: 4px 0;
-  font-family: "Krub", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 500;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0;
-  font-size: clamp(24px, 8vh, 92px);
-  line-height: 1.15;
-  color: #1a1a1a; /* off-black on pink */
+  font-size: clamp(20px, 5.2vh, 56px);
+  line-height: 1.05;
+  color: var(--tabtext, #1a1a1a);
+  background: var(--tabbg, #e7e2d8);
   text-decoration: none;
-  transition: opacity 0.15s ease, padding-left 0.2s ease;
+  transition: padding-left 0.2s ease, filter 0.15s ease;
 }
 
 .menu-list a:hover {
-  opacity: 0.5;
-  padding-left: 18px;
+  padding-left: 46px;
+  filter: brightness(1.06);
 }
+
+/* palette colour per tab */
+.menu-list .m-pink   { --tabbg: var(--pink);   --tabtext: #fff; }
+.menu-list .m-orange { --tabbg: var(--orange); --tabtext: #fff; }
+.menu-list .m-blue   { --tabbg: var(--blue);   --tabtext: #1a1a1a; }
+.menu-list .m-yellow { --tabbg: var(--yellow); --tabtext: #1a1a1a; }
+.menu-list .m-green  { --tabbg: var(--green);  --tabtext: #fff; }
+.menu-list .m-ochre  { --tabbg: var(--ochre);  --tabtext: #fff; }
+.menu-list .m-purple { --tabbg: var(--purple); --tabtext: #fff; }
 
 .menu-foot {
   display: grid;

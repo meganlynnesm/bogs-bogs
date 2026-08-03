@@ -6,48 +6,6 @@
   <title>bogs — bogs · Research</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="catalogue.css" />
-  <style id="net-style">
-    .net-wrap { overflow-x: auto; }
-    #strata { display: block; width: 100%; height: auto; }
-
-    .thread { fill: none; stroke: var(--faint); stroke-width: .7; stroke-opacity: .55; }
-    .thread.up { stroke-dasharray: 3 4; }
-    .kin { stroke: var(--faint); stroke-width: .6; stroke-opacity: .8; fill: none; }
-    .sig { fill: none; stroke-linecap: round; }
-
-    .dot { stroke: var(--bg); stroke-width: 1.4; cursor: pointer; }
-    .cap {
-      font-family: inherit; font-size: 10px; font-weight: 500;
-      letter-spacing: .1em; text-transform: uppercase; fill: var(--ink);
-      paint-order: stroke; stroke: var(--bg); stroke-width: 3.5; stroke-linejoin: round;
-      pointer-events: none;
-    }
-    .cap.top { font-size: 12px; letter-spacing: .18em; }
-    .band-key { font-family: inherit; font-size: 10px; letter-spacing: .2em;
-                text-transform: uppercase; fill: var(--faint); }
-    .lg-head { font-family: inherit; font-size: 10px; font-weight: 500; letter-spacing: .2em;
-               text-transform: uppercase; fill: var(--muted); }
-    .lg-item { font-family: inherit; font-size: 10px; fill: var(--ink); cursor: pointer; }
-    .lg-note { font-family: inherit; font-size: 9px; fill: var(--muted); }
-    .dim { opacity: .08; }
-    #strata circle, #strata path, #strata text { transition: opacity .16s ease; }
-
-    .tools { display: flex; gap: 14px; align-items: baseline; margin-top: 14px; }
-    .tools button {
-      font: inherit; font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
-      background: none; border: 1px solid var(--faint); color: var(--muted);
-      padding: 6px 12px; cursor: pointer; transition: border-color .15s, color .15s;
-    }
-    .tools button:hover { border-color: var(--accent); color: var(--accent); }
-
-    .readout { display: grid; grid-template-columns: 180px 1fr; gap: 48px;
-               margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--faint); min-height: 74px; }
-    .readout-key { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
-    .readout-title { font-size: 15px; margin: 0 0 6px; font-weight: 500; }
-    .readout-body { font-size: 13px; line-height: 1.5; color: var(--muted); margin: 0; max-width: 560px; }
-    .readout-body em { font-style: normal; color: var(--accent); }
-    @media (max-width: 700px) { .readout { grid-template-columns: 1fr; gap: 12px; } }
-  </style>
 </head>
 <body>
 
@@ -83,32 +41,13 @@
 
       <section id="network" class="cat-section">
         <div class="cat-head"><span class="idx">A</span><h2>Network</h2></div>
-        <p class="lede" style="max-width:660px;margin:0 0 26px;">Three registers, eleven groupings,
-          sixty components, one network above the next. Grey threads carry every node up into
-          the thing that contains it; coloured threads are the relations that cross between groups:
-          <em style="font-style:normal;color:var(--orange)">orange</em> where one extracts from another,
-          <em style="font-style:normal;color:var(--green)">olive</em> where they sustain each other.
-          Hover a node to follow it up through its grouping; hover a legend entry to isolate a group.</p>
+        <p class="lede" style="max-width:660px;margin:0 0 26px;">The project's components, clustered by
+          grouping in the palette colours and drawn up through the three registers: land, data and time.</p>
 
-        <div class="net-wrap">
-          <svg id="strata" viewBox="0 0 1000 1200" role="img"
-               aria-label="A three-level network: three registers (land, data and time) at the top, eleven groupings below them, and sixty project components at the base."></svg>
+        <div class="diagram-wrap">
+          <svg id="opennet" role="img" aria-label="Interactive network of the project's 61 components, 17 groupings and 3 registers, connected by extractive, sustaining and belongs-to relations."></svg>
         </div>
-
-        <div class="tools">
-          <button id="dl">Download SVG</button>
-          <span class="readout-body" style="margin:0">Vector, for the poster, opens in Illustrator or places into InDesign at any size.</span>
-        </div>
-
-        <div class="readout">
-          <div class="readout-key">Reading</div>
-          <div>
-            <p class="readout-title" id="ro-title">Three registers</p>
-            <p class="readout-body" id="ro-body">Land, data and time. Hover any node to follow it up
-              through its grouping; hover a legend entry to isolate that group. The <em>seams</em> are
-              where an orange or olive thread leaves one cluster for another.</p>
-          </div>
-        </div>
+        <p class="dm-sources" id="on-readout">Hover any node to trace its connections and read its name.</p>
       </section>
 
       <section id="themes" class="cat-section">
@@ -168,7 +107,8 @@
 
   <script src="main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
-  <script src="network.js"></script>
+  <script src="opening-diagram-data.js"></script>
+  <script src="network2.js"></script>
 
 </body>
 </html>
