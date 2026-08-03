@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Krub:wght@300;400;500;600;700&display=swap');
+
 :root {
   --ink: #1a1a1a;
   --muted: #8a8a8a;
@@ -41,7 +43,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Krub", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   line-height: 1.6;
   letter-spacing: 0.01em;
@@ -66,6 +68,8 @@ header {
   color: var(--muted);
   margin: 0 0 20px;
 }
+
+h1, h2 { font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 h1 {
   font-size: clamp(40px, 7vw, 84px);

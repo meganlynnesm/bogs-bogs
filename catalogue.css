@@ -288,7 +288,7 @@ a.cat-item { text-decoration: none; color: inherit; }
 .dm-sources { margin: 12px 0 0; font-size: 12px; line-height: 1.5; color: var(--muted); max-width: 720px; }
 
 .maplibregl-popup-content {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Krub", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px; line-height: 1.5; color: var(--ink); border-radius: 0; padding: 12px 14px;
 }
 .maplibregl-popup-content strong { display: block; margin-bottom: 3px; color: var(--accent); }

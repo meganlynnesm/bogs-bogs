@@ -277,7 +277,7 @@ document.getElementById("dl").addEventListener("click", () => {
   const sheet = document.getElementById("net-style").textContent;
   const st = document.createElementNS("http://www.w3.org/2000/svg", "style");
   st.textContent = sheet + `
-    text { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    text { font-family: "Krub", "Helvetica Neue", Helvetica, Arial, sans-serif; }
     .thread { stroke: ${FAINT}; } .kin { stroke: ${FAINT}; }
     .dot { stroke: ${BG}; } .cap { stroke: ${BG}; fill: ${tone("--ink")}; }
     .band-key { fill: ${FAINT}; } .lg-head { fill: ${tone("--muted")}; }
