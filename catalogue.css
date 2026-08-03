@@ -109,6 +109,21 @@ a.cat-item { text-decoration: none; color: inherit; }
 /* framed diagram (obsolescence readings tree, etc.) */
 .diagram-wrap { overflow-x: auto; border: 1px solid var(--faint); }
 .ob-tree { display: block; width: 100%; min-width: 820px; height: auto; }
+
+/* obsolescence tidy tree (live d3.tree) */
+#obstree { display: block; width: 100%; min-width: 860px; height: auto;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.ot-link { fill: none; stroke: #c9c0b2; stroke-width: 1.4; }
+.ot-node circle { stroke: var(--bg); stroke-width: 1.4; }
+.ot-author { font-size: 13px; font-weight: 600; fill: var(--ink); }
+.ot-subject { font-size: 11px; font-style: italic; fill: #6b6259; }
+.ot-note { font-size: 10.5px; fill: var(--muted); }
+.ot-branch { font-size: 13px; font-weight: 600; fill: #4a4239; }
+.ot-pole { font-size: 10px; letter-spacing: 0.14em; fill: #9a9188; }
+.ot-root { font-size: 16px; font-weight: 600; fill: var(--ink); }
+.ot-rootsub { font-size: 11px; font-style: italic; fill: #8a8178; }
+.ot-dim { opacity: 0.12; }
+#obstree g, #obstree path { transition: opacity 0.15s ease; }
 .diagram-wrap img { display: block; width: 100%; height: auto; }
 
 /* interactive force-graph (opening diagram) */
