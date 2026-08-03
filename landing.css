@@ -208,9 +208,8 @@ body.menu-page { background: #f4f1ea; overflow: hidden; }
   transition: color 0.15s ease;
 }
 
-.menu-list a.m-ink { color: var(--pink); }   /* Colloquium text is pink */
-
-.menu-list a:hover { color: #1a1a1a; }        /* hover turns the text black */
+.menu-list a:hover { color: #1a1a1a; }            /* hover turns the text black */
+.menu-list a.m-ink:hover { color: var(--pink); }  /* except Colloquium → pink on hover */
 
 /* palette colour per tab */
 .menu-list .m-pink   { --tabbg: var(--pink);   --tabtext: #fff; }

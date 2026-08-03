@@ -34,6 +34,7 @@
 /* per-theme accent overrides */
 body.theme-regen { --accent: var(--regen-1); }  /* orange */
 body.theme-obs { --accent: var(--obs-1); }      /* blue */
+body.theme-abstract { --accent: var(--yellow); } /* abstract page */
 
 * { box-sizing: border-box; }
 
