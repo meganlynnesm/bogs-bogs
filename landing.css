@@ -155,6 +155,7 @@ body.menu-page { background: #f4f1ea; overflow: hidden; }
 }
 
 .menu-close {
+  margin-left: auto;          /* keep the × top-right now the wordmark is gone */
   color: #1a1a1a;
   text-decoration: none;
   font-size: 32px;
@@ -201,15 +202,15 @@ body.menu-page { background: #f4f1ea; overflow: hidden; }
   letter-spacing: 0;
   font-size: clamp(20px, 5.2vh, 56px);
   line-height: 1.05;
-  color: var(--tabtext, #1a1a1a);
+  color: #fff;
   background: var(--tabbg, #e7e2d8);
   text-decoration: none;
-  transition: opacity 0.15s ease;
+  transition: color 0.15s ease;
 }
 
-.menu-list a:hover {
-  opacity: 0.72;
-}
+.menu-list a.m-ink { color: var(--pink); }   /* Colloquium text is pink */
+
+.menu-list a:hover { color: #1a1a1a; }        /* hover turns the text black */
 
 /* palette colour per tab */
 .menu-list .m-pink   { --tabbg: var(--pink);   --tabtext: #fff; }

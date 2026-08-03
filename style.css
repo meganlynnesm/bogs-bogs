@@ -151,6 +151,16 @@ nav a.active {
   border-bottom-color: var(--accent);
 }
 
+/* active-tab underline matches each tab's colour in the menu */
+nav a[href="research.html"].active            { border-bottom-color: var(--yellow); }
+nav a[href="data-ai.html"].active             { border-bottom-color: var(--pink); }
+nav a[href="regeneration.html"].active        { border-bottom-color: var(--orange); }
+nav a[href="obsolescence.html"].active        { border-bottom-color: var(--blue); }
+nav a[href="research-foundation.html"].active { border-bottom-color: var(--green); }
+nav a[href="research-gallery.html"].active    { border-bottom-color: var(--ochre); }
+nav a[href="colloquium.html"].active          { border-bottom-color: var(--ink); }
+nav a[href="index.html"].active               { border-bottom-color: var(--purple); }  /* Survey (Quiz page) */
+
 /* ---------- Abstract ---------- */
 section {
   padding: 72px 0;
