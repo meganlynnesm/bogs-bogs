@@ -112,7 +112,7 @@ nav {
 .nav-inner {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 22px;                  /* slim: fits 9 tabs + wordmark without overflow */
   max-width: 1600px;          /* match .page-grid so links align with the side nav */
   margin: 0 auto;
   padding: 0 40px;
@@ -135,7 +135,7 @@ nav a {
   display: inline-block;
   padding: 7px 0;
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
   text-decoration: none;

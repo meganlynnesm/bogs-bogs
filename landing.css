@@ -113,9 +113,9 @@ body.menu-page { background: #f4f1ea; overflow: hidden; }
 
 /* "Future" — pixel typeface in pink */
 .landing-title .pixel {
-  font-family: "argent-pixel-cf", "Argent Pixel CF", "Pixelify Sans", ui-monospace, monospace;
-  font-weight: 500;
-  font-style: normal;   /* keep the pixel word upright, not italic */
+  font-family: "argent-pixel-cf", "Pixelify Sans", ui-monospace, monospace;
+  font-weight: 400;
+  font-style: italic;   /* Argent Pixel CF ships weight 400 italic (per the Adobe kit) */
   color: #fff;
   letter-spacing: 0.01em;
 }
@@ -219,6 +219,7 @@ body.menu-page { background: #f4f1ea; overflow: hidden; }
 .menu-list .m-green  { --tabbg: var(--green);  --tabtext: #fff; }
 .menu-list .m-ochre  { --tabbg: var(--ochre);  --tabtext: #fff; }
 .menu-list .m-purple { --tabbg: var(--purple); --tabtext: #fff; }
+.menu-list .m-ink    { --tabbg: #1a1a1a;      --tabtext: #fff; }
 
 .menu-foot {
   display: grid;
