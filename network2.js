@@ -31,13 +31,13 @@
   const gN = svg.append("g");
   const gC = svg.append("g");
 
-  const LW = { kin: 0.5, sig: 1.3, strong: 2.1, belongs: 0.6 };
-  const LO = { kin: 0.22, sig: 0.6, strong: 0.78, belongs: 0.13 };
+  const LW = { kin: 0.5, sig: 1.4, strong: 2.2, belongs: 0.8 };
+  const LO = { kin: 0.22, sig: 0.65, strong: 0.8, belongs: 0.34 };
 
   const lsel = gL.selectAll("line").data(links).join("line")
     .attr("class", "on-link")
     .attr("fill", "none")
-    .attr("stroke", d => d.kind === "belongs" ? "#d2ccbe" : d.color)
+    .attr("stroke", d => d.kind === "belongs" ? "#bcb3a1" : d.color)
     .attr("stroke-width", d => LW[d.kind])
     .attr("stroke-dasharray", d => d.kind === "belongs" ? "4 4" : null)
     .attr("stroke-opacity", d => LO[d.kind]);
@@ -53,6 +53,15 @@
     .attr("class", d => "on-cap l" + d.level)
     .attr("text-anchor", "middle")
     .text(d => d.name);
+
+  // left-hand level captions (one per tier)
+  const BANDS = [[1, "First level · registers"], [2, "Second level · groupings"], [3, "Third level · components"]];
+  const bandY = { 1: 62, 2: 372, 3: 648 };
+  svg.append("g").selectAll("text").data(BANDS).join("text")
+    .attr("class", "on-band")
+    .attr("x", 24)
+    .attr("y", d => bandY[d[0]])
+    .text(d => d[1]);
 
   const hoverLabel = svg.append("text").attr("class", "on-hoverlabel").attr("text-anchor", "middle").style("opacity", 0);
   const ro = document.getElementById("on-readout");

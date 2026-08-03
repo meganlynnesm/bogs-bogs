@@ -3,6 +3,13 @@
    Reuses palette variables from style.css (link style.css first).
    ===================================================================== */
 
+/* Argent Pixel CF — Adobe Fonts (https://fonts.adobe.com/fonts/argent-pixel-cf).
+   Adobe fonts can't be self-hosted; add it to an Adobe "Web Project", then put
+   the kit stylesheet <link> in each page's <head>. The Adobe family name is
+   "argent-pixel-cf" (already set on .landing-title .pixel). Falls back to
+   Pixelify Sans until the kit loads.
+   Kit embed to add to <head>:  <link rel="stylesheet" href="https://use.typekit.net/XXXX.css"> */
+
 body.landing-page { background: #160f1c; }
 body.menu-page { background: #f4f1ea; overflow: hidden; }
 
@@ -93,7 +100,8 @@ body.menu-page { background: #f4f1ea; overflow: hidden; }
   flex-direction: column;
   margin: 0;
   font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
+  font-weight: 500;
+  font-style: italic;
   text-transform: uppercase;
   font-size: clamp(52px, 13vw, 180px);
   line-height: 1.0;
@@ -105,8 +113,9 @@ body.menu-page { background: #f4f1ea; overflow: hidden; }
 
 /* "Future" — pixel typeface in pink */
 .landing-title .pixel {
-  font-family: "Pixelify Sans", ui-monospace, monospace;
+  font-family: "argent-pixel-cf", "Argent Pixel CF", "Pixelify Sans", ui-monospace, monospace;
   font-weight: 500;
+  font-style: normal;   /* keep the pixel word upright, not italic */
   color: #fff;
   letter-spacing: 0.01em;
 }
@@ -175,7 +184,7 @@ body.menu-page { background: #f4f1ea; overflow: hidden; }
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
 }
 
 .menu-list li { flex: 1; display: flex; }
@@ -195,12 +204,11 @@ body.menu-page { background: #f4f1ea; overflow: hidden; }
   color: var(--tabtext, #1a1a1a);
   background: var(--tabbg, #e7e2d8);
   text-decoration: none;
-  transition: padding-left 0.2s ease, filter 0.15s ease;
+  transition: opacity 0.15s ease;
 }
 
 .menu-list a:hover {
-  padding-left: 46px;
-  filter: brightness(1.06);
+  opacity: 0.72;
 }
 
 /* palette colour per tab */
