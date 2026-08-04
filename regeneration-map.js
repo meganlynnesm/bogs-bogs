@@ -1,10 +1,6 @@
 // ---------------------------------------------------------------------------
-// Regeneration — global land-cover map (MapLibre + CARTO dark base).
-//   Land cover (dominant type, country choropleth) + GFW peatlands raster.
+// Landscapes — global land-cover map (country choropleth of dominant type).
 // ---------------------------------------------------------------------------
-
-const PEAT_TILES =
-  "https://tiles.globalforestwatch.org/gfw_peatlands/v20230315/default/{z}/{x}/{y}.png";
 
 // ink basemap — black water (background) + white land (drawn from the
 // country polygons below, so no external tiles are needed).
@@ -57,21 +53,6 @@ map.on("load", () => {
     paint: { "line-color": "#c9c4bb", "line-width": 0.4 },
   });
 
-  map.addSource("peatlands", {
-    type: "raster",
-    tiles: [PEAT_TILES],
-    tileSize: 256,
-    maxzoom: 12,
-    attribution:
-      '<a href="https://data.globalforestwatch.org/datasets/gfw::global-peatlands/about" target="_blank" rel="noopener">Global Peatlands</a> — GFW/WRI',
-  });
-  map.addLayer({
-    id: "peatlands-raster",
-    type: "raster",
-    source: "peatlands",
-    paint: { "raster-opacity": 0.7 },
-  });
-
   map.on("click", "land-fill", (e) => {
     const p = e.features[0].properties || {};
     const lt = p.land_type || "no data";
@@ -96,7 +77,6 @@ map.on("load", () => {
     });
   };
   bind("t-land", ["land-fill", "land-outline"]);
-  bind("t-peat", ["peatlands-raster"]);
 
   // ensure correct sizing now that it sits inside the content column
   setTimeout(() => map.resize(), 200);

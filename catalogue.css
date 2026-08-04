@@ -101,6 +101,12 @@
 /* catalogue tiles used as links (research page themes) */
 a.cat-item { text-decoration: none; color: inherit; }
 
+/* gallery — visual precedent grid (full-colour artworks, cover-fit) */
+.precedent { grid-template-columns: repeat(3, 1fr); gap: 12px; grid-auto-flow: row; }
+.precedent .cat-item { aspect-ratio: 4 / 3; cursor: pointer; background: #efeee8; }
+.precedent .cat-item img { object-fit: cover; mix-blend-mode: normal; }
+@media (max-width: 700px) { .precedent { grid-template-columns: 1fr 1fr; } }
+
 /* research page — three larger, linked theme tiles */
 .catalogue-themes { grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .catalogue-themes .cat-item { aspect-ratio: 4 / 3; cursor: pointer; }

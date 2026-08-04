@@ -6,6 +6,8 @@
 (function () {
   if (!document.getElementById("obstree") || typeof d3 === "undefined") return;
 
+  // To show a real book cover on a leaf, add  cover: "cover-img/xxx.jpg"  to it;
+  // otherwise a coloured placeholder box is drawn.
   const DATA = {
     name: "Obsolescence", sub: "one word, eight subjects", kind: "root",
     children: [
@@ -25,7 +27,7 @@
   };
 
   const W = 1180, H = 660;
-  const M = { top: 26, right: 320, bottom: 26, left: 118 };
+  const M = { top: 26, right: 420, bottom: 26, left: 178 };  // condensed tree, room for a book cover + text at each leaf
   const svg = d3.select("#obstree").attr("viewBox", `0 0 ${W} ${H}`).attr("preserveAspectRatio", "xMidYMid meet");
   const g = svg.append("g").attr("transform", `translate(${M.left},${M.top})`);
 
@@ -51,9 +53,20 @@
   nodeSel.each(function (d) {
     const s = d3.select(this);
     if (d.depth === 2) {                 // leaf reading
-      s.append("text").attr("class", "ot-author").attr("x", 13).attr("dy", "-0.25em").text(d.data.name);
-      s.append("text").attr("class", "ot-subject").attr("x", 13).attr("dy", "1.0em").text(d.data.subject);
-      s.append("text").attr("class", "ot-note").attr("x", 13).attr("dy", "2.35em").text(d.data.note);
+      const cx = 12, cw = 28, ch = 40, tx = cx + cw + 14;  // book-cover slot, then text
+      if (d.data.cover) {
+        s.append("image").attr("class", "ot-cover-img").attr("href", d.data.cover)
+          .attr("x", cx).attr("y", -ch / 2).attr("width", cw).attr("height", ch)
+          .attr("preserveAspectRatio", "xMidYMid slice");
+      } else {
+        s.append("rect").attr("class", "ot-cover").attr("x", cx).attr("y", -ch / 2)
+          .attr("width", cw).attr("height", ch).attr("rx", 2)
+          .attr("fill", d.data.color).attr("fill-opacity", 0.18)
+          .attr("stroke", d.data.color).attr("stroke-width", 1);
+      }
+      s.append("text").attr("class", "ot-author").attr("x", tx).attr("dy", "-0.25em").text(d.data.name);
+      s.append("text").attr("class", "ot-subject").attr("x", tx).attr("dy", "1.0em").text(d.data.subject);
+      s.append("text").attr("class", "ot-note").attr("x", tx).attr("dy", "2.35em").text(d.data.note);
     } else if (d.depth === 1) {           // pole
       s.append("text").attr("class", "ot-branch").attr("text-anchor", "middle").attr("dy", "-1.3em").text(d.data.name);
       s.append("text").attr("class", "ot-pole").attr("text-anchor", "middle").attr("dy", "2.0em").text(d.data.pole);
