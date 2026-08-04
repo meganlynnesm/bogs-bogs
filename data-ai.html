@@ -31,12 +31,13 @@
     <!-- secondary navigation — left side -->
     <aside class="subnav">
       <div class="subnav-inner">
-        <a href="#data-centre"><span class="idx">A</span>Data Centre</a>
-        <a href="#network"><span class="idx">B</span>Network</a>
-        <a href="#subsea"><span class="idx">C</span>Subsea</a>
-        <a href="#access"><span class="idx">D</span>Access</a>
-        <a href="#power"><span class="idx">E</span>Power &amp; Land</a>
-        <a href="#divide-map"><span class="idx">F</span>Digital Divide Map</a>
+        <a href="#map"><span class="idx">A</span>Map</a>
+        <a href="#data-centre"><span class="idx">B</span>Data Centre</a>
+        <a href="#network"><span class="idx">C</span>Network</a>
+        <a href="#subsea"><span class="idx">D</span>Subsea</a>
+        <a href="#access"><span class="idx">E</span>Access</a>
+        <a href="#power"><span class="idx">F</span>Power &amp; Land</a>
+        <a href="#divide-map"><span class="idx">G</span>Digital Divide Map</a>
       </div>
     </aside>
 
@@ -50,9 +51,19 @@
 
       <main>
 
-        <!-- A — DATA CENTRE -->
+        <!-- A — GLOBAL MAP -->
+        <section class="cat-section" id="map">
+          <div class="cat-head"><span class="idx">A</span><h2>Global land types &amp; internet infrastructure</h2></div>
+          <div class="plate">
+            <img src="poster-svg/map-plate.svg" alt="World map: 14 biomes, submarine cables and data-centre locations." />
+            <img src="poster-svg/legend-map-band-32x4.svg" alt="Legend: land-cover types and internet infrastructure." />
+          </div>
+          <p class="dm-sources">Dinerstein et al. 2017, RESOLVE Ecoregions (CC BY 4.0). TeleGeography Submarine Cable Map. Data Center Map, datacentermap.com (Aug 2026). Projection: Equal Earth.</p>
+        </section>
+
+        <!-- B — DATA CENTRE -->
         <section class="cat-section" id="data-centre">
-          <div class="cat-head"><span class="idx">A</span><h2>Data Centre</h2></div>
+          <div class="cat-head"><span class="idx">B</span><h2>Data Centre</h2></div>
           <div class="catalogue">
             <figure class="cat-item span2"><span class="cat-num">01</span><img src="catalogue-img/server.png" alt="Server" /><div class="cat-pop"><strong>Server</strong>Computer that stores and processes data &mdash; the basic unit of compute.</div></figure>
             <figure class="cat-item"><span class="cat-num">02</span><img src="catalogue-img/serverrack.png" alt="Server rack" /><div class="cat-pop"><strong>Server rack</strong>A 19-inch steel frame stacking many servers vertically.</div></figure>
@@ -67,7 +78,7 @@
 
         <!-- B — NETWORK -->
         <section class="cat-section" id="network">
-          <div class="cat-head"><span class="idx">B</span><h2>Network</h2></div>
+          <div class="cat-head"><span class="idx">C</span><h2>Network</h2></div>
           <div class="catalogue">
             <figure class="cat-item"><span class="cat-num">09</span><img src="catalogue-img/corerouter.png" alt="Core router" /><div class="cat-pop"><strong>Core router</strong>Directs large volumes of traffic between networks.</div></figure>
             <figure class="cat-item"><span class="cat-num">10</span><img src="catalogue-img/networkswitch.png" alt="Network switch" /><div class="cat-pop"><strong>Network switch</strong>Connects devices within a network and forwards data.</div></figure>
@@ -81,7 +92,7 @@
 
         <!-- C — SUBSEA -->
         <section class="cat-section" id="subsea">
-          <div class="cat-head"><span class="idx">C</span><h2>Subsea &amp; Long-haul</h2></div>
+          <div class="cat-head"><span class="idx">D</span><h2>Subsea &amp; Long-haul</h2></div>
           <div class="catalogue">
             <figure class="cat-item span2"><span class="cat-num">16</span><span class="cat-ph">16</span><div class="cat-pop"><strong>Submarine cable</strong>Undersea fibre carrying ~99% of intercontinental data.</div></figure>
             <figure class="cat-item"><span class="cat-num">17</span><span class="cat-ph">17</span><div class="cat-pop"><strong>Cable landing station</strong>Coastal facility where a subsea cable comes ashore.</div></figure>
@@ -93,7 +104,7 @@
 
         <!-- D — ACCESS -->
         <section class="cat-section" id="access">
-          <div class="cat-head"><span class="idx">D</span><h2>Access &middot; Last Mile</h2></div>
+          <div class="cat-head"><span class="idx">E</span><h2>Access &middot; Last Mile</h2></div>
           <div class="catalogue">
             <figure class="cat-item"><span class="cat-num">21</span><img src="catalogue-img/celltower.png" alt="Cell tower" /><div class="cat-pop"><strong>Cell tower</strong>Mast with antennas providing mobile coverage.</div></figure>
             <figure class="cat-item"><span class="cat-num">22</span><img src="catalogue-img/smallcell.png" alt="Small cell" /><div class="cat-pop"><strong>Small cell</strong>Compact low-power node densifying mobile capacity.</div></figure>
@@ -107,7 +118,7 @@
 
         <!-- E — POWER & LAND -->
         <section class="cat-section" id="power">
-          <div class="cat-head"><span class="idx">E</span><h2>Power &amp; Land</h2></div>
+          <div class="cat-head"><span class="idx">F</span><h2>Power &amp; Land</h2></div>
           <div class="catalogue">
             <figure class="cat-item"><span class="cat-num">28</span><img src="catalogue-img/substation.png" alt="Substation" /><div class="cat-pop"><strong>Substation</strong>Steps grid voltage down for the site.</div></figure>
             <figure class="cat-item"><span class="cat-num">29</span><span class="cat-ph">29</span><div class="cat-pop"><strong>Transformer</strong>Converts voltage between the grid and the building.</div></figure>
@@ -122,7 +133,7 @@
   </div>
 
   <section id="divide-map" class="divide-map">
-    <div class="dm-head"><span class="idx">F</span><h2>Global digital divide</h2></div>
+    <div class="dm-head"><span class="idx">G</span><h2>Global digital divide</h2></div>
     <p class="dm-lede">Median fixed-broadband download speed by country: the divide with
       global data-centre locations and submarine-cable routes over a dark base. Click any country,
       cable or data centre.</p>

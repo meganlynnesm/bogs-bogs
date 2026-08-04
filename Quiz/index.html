@@ -78,8 +78,8 @@
     <div class="nav-inner">
       <a href="../menu.html">Menu</a>
       <a href="../research.html">Abstract</a>
-      <a href="../regeneration.html">Landscapes</a>
       <a href="../data-ai.html">Data &amp; the Divide</a>
+      <a href="../regeneration.html">Regeneration</a>
       <a href="../obsolescence.html">Obsolescence</a>
       <a href="../research-foundation.html">Map</a>
       <a href="../research-gallery.html">Gallery</a>
@@ -92,8 +92,8 @@
   <div class="page-grid">
     <aside class="subnav">
       <div class="subnav-inner">
-        <a href="#peatlands"><span class="idx">01</span>Peatlands</a>
-        <a href="#datacentres"><span class="idx">02</span>Data &amp; AI</a>
+        <a href="#peatlands"><span class="idx">01</span>Landscapes</a>
+        <a href="#datacentres"><span class="idx">02</span>Data</a>
         <a href="#obsolete"><span class="idx">03</span>Obsolescence</a>
       </div>
     </aside>
@@ -102,7 +102,7 @@
       <div class="page-head">
         <p class="eyebrow">06 &nbsp;·&nbsp; Survey</p>
         <h1>what do you<span class="sqdot"></span>think?</h1>
-        <p class="lede">Five quick questions across the themes of this project — peatlands; data, AI &amp; the divide;
+        <p class="lede">Five questions across the themes of this project: land types; data;
           and obsolescence. Your answers are anonymous, update live, and help set the direction for next semester.</p>
       </div>
 
@@ -136,8 +136,8 @@
 
     const QUESTIONS = [
       {
-        id:'peatlands', num:'01', theme:'Peatlands', type:'choice',
-        q:"What's the most important reason to restore and protect peatlands?",
+        id:'peatlands', num:'01', theme:'Landscapes', type:'choice',
+        q:"What's the most important reason to restore and protect our landscapes?",
         options:[
           {key:'carbon',       label:'Carbon storage & climate',      color:'#828211'},
           {key:'water',        label:'Water & flood regulation',      color:'#98a8d9'},
@@ -146,7 +146,7 @@
         ]
       },
       {
-        id:'datacentres', num:'02', theme:'Data, AI & the Divide', type:'choice',
+        id:'datacentres', num:'02', theme:'Data & the Divide', type:'choice',
         q:"What's your biggest concern with the scale of data centre construction?",
         options:[
           {key:'energy',  label:'Energy & carbon demand',    color:'#828211'},
@@ -156,12 +156,12 @@
         ]
       },
       {
-        id:'ai', num:'02', theme:'Data, AI & the Divide', type:'slider',
+        id:'ai', num:'02', theme:'Data & the Divide', type:'slider',
         q:"How nervous are you about AI affecting your career?",
         min:1, max:10, unit:'/ 10', minLabel:'Not at all', maxLabel:'Extremely'
       },
       {
-        id:'disparity', num:'02', theme:'Data, AI & the Divide', type:'choice',
+        id:'disparity', num:'02', theme:'Data & the Divide', type:'choice',
         q:"Do you think the digital divide still exists in the USA in 2026?",
         options:[
           {key:'yes',    label:'Yes',    color:'#828211'},
@@ -171,7 +171,7 @@
       },
       {
         id:'obsolete', num:'03', theme:'Obsolescence', type:'steps',
-        q:"When will today's technology — phones, AI agents, data centres, EVs — be rendered obsolete?",
+        q:"When will today's technology: phones, AI agents, data centres, EVs - be rendered obsolete?",
         steps:[
           {key:'50',   label:'50 years',   color:'#828211'},
           {key:'100',  label:'100 years',  color:'#98a8d9'},
