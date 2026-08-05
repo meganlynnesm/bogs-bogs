@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="catalogue.css" />
   <link rel="stylesheet" href="research-foundation.css" />
 </head>
-<body>
+<body class="theme-map">
 
   <nav>
     <div class="nav-inner">
@@ -38,8 +38,9 @@
       <div class="page-head">
         <p class="eyebrow">05 &nbsp;·&nbsp; Map</p>
         <h1>global<span class="sqdot"></span>map</h1>
-        <p class="lede">A zoomable map of the ground and the wires: peatlands, the submarine cable
-          infrastructure that carries data, and the data centres.</p>
+        <p class="lede">A zoomable map that layers the ground and the wires: land cover, peatlands, the
+          submarine cables and data centres that carry the internet, and the digital divide in access.
+          Toggle each layer at right.</p>
       </div>
     </div>
   </div>
@@ -63,11 +64,21 @@
           <input type="checkbox" id="toggle-peatlands" checked />
           <span class="swatch swatch-peat"></span><span>Peatlands &amp; organic soils</span>
         </label>
+        <label class="legend-row">
+          <input type="checkbox" id="toggle-worldcover" />
+          <span class="swatch" style="background:linear-gradient(90deg,#38814e 0 33%,#e4c259 33% 66%,#64b3d5 66% 100%)"></span><span>Land cover (ESA WorldCover)</span>
+        </label>
+        <label class="legend-row">
+          <input type="checkbox" id="toggle-divide" />
+          <span class="swatch" style="background:linear-gradient(90deg,#2a0f1c,#c22e69,#f6cddd)"></span><span>Digital divide (internet speed)</span>
+        </label>
       </div>
     </div>
 
     <p class="dm-sources">
-      Sources: Peatlands &mdash; <a class="link" href="https://data.globalforestwatch.org/datasets/gfw::global-peatlands/about" target="_blank" rel="noopener">Global Peatlands</a>,
+      Sources: Land cover &mdash; <a class="link" href="https://esa-worldcover.org" target="_blank" rel="noopener">ESA WorldCover</a> 2021, 10&nbsp;m (ESA / Terrascope, CC&#8209;BY&#8209;4.0).
+      Internet speed &mdash; Ookla Speedtest Global Index (median fixed download).
+      Peatlands &mdash; <a class="link" href="https://data.globalforestwatch.org/datasets/gfw::global-peatlands/about" target="_blank" rel="noopener">Global Peatlands</a>,
       Global Forest Watch / WRI (CC&#8209;BY&#8209;4.0). Submarine cables &mdash;
       <a class="link" href="https://www.submarinecablemap.com" target="_blank" rel="noopener">TeleGeography Submarine Cable Map</a>.
       Data centres &mdash; <a class="link" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (ODbL).
@@ -82,7 +93,7 @@
     </div>
   </footer>
 
-  <script src="research-foundation.js"></script>
+  <script src="research-foundation.js?v=2"></script>
 
 </body>
 </html>
