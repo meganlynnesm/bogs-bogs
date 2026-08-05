@@ -14,13 +14,15 @@ const YGREEN = "#828211"; // yellow-green dark — peatlands (legend/reference)
 const PEAT_TILES =
   "https://tiles.globalforestwatch.org/gfw_peatlands/v20230315/default/{z}/{x}/{y}.png";
 
-// ESA WorldCover 2021 (10 m global land cover), served by Terrascope as WMS.
-// Using the WMS GetMap endpoint with MapLibre's {bbox-epsg-3857} token avoids
-// tile-matrix guesswork — MapLibre requests one 256px GetMap per tile.
-const WORLDCOVER_WMS =
-  "https://services.terrascope.be/wms/v2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap" +
-  "&LAYERS=WORLDCOVER_2021_MAP&STYLES=&FORMAT=image/png&TRANSPARENT=true" +
-  "&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&BBOX={bbox-epsg-3857}";
+// Global land cover — NASA GIBS "MODIS IGBP Land Cover Type" (annual, ~500 m),
+// pre-coloured PNG tiles, no API key. Native max zoom 8; MapLibre overzooms
+// beyond that. (ESA WorldCover's Terrascope host is currently unreachable, and
+// Dynamic World is only served through Google Earth Engine — neither drops into
+// a static page, so GIBS is the reliable key-free source.)
+const LANDCOVER_TILES =
+  "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/" +
+  "MODIS_Combined_L3_IGBP_Land_Cover_Type_Annual/default/2024-01-01/" +
+  "GoogleMapsCompatible_Level8/{z}/{y}/{x}.png";
 
 // Digital-divide choropleth ramp (shared with the Data & the Divide map):
 // low speed = dark maroon → high speed = pale pink; missing → white.
@@ -75,10 +77,11 @@ map.on("load", () => {
   // ---- ESA WorldCover land cover (raster, bottom; off by default) ---------
   map.addSource("worldcover", {
     type: "raster",
-    tiles: [WORLDCOVER_WMS],
+    tiles: [LANDCOVER_TILES],
     tileSize: 256,
+    maxzoom: 8,
     attribution:
-      '<a href="https://esa-worldcover.org" target="_blank" rel="noopener">ESA WorldCover</a> 2021 — ESA/Terrascope (CC-BY-4.0)',
+      '<a href="https://www.earthdata.nasa.gov/gibs" target="_blank" rel="noopener">NASA GIBS</a> — MODIS IGBP Land Cover Type (annual)',
   });
   map.addLayer({
     id: "worldcover-raster",
