@@ -7,7 +7,7 @@
 // ---------------------------------------------------------------------------
 
 const PINK = "#c22e69"; // focal — data centres (magma magenta)
-const CABLE = "#cb5600"; // Tibetan Tiger (burnt orange) — cables
+const CABLE = "#c22e69"; // magma magenta (pink) — cables
 const YGREEN = "#828211"; // yellow-green dark — peatlands (legend/reference)
 
 // Global land cover — NASA GIBS "MODIS IGBP Land Cover Type" (annual, ~500 m),
@@ -83,36 +83,29 @@ map.on("load", () => {
     id: "worldcover-raster",
     type: "raster",
     source: "worldcover",
-    layout: { visibility: "none" },
     paint: { "raster-opacity": 0.9 },
   });
 
   // Dark ocean mask painted over the land-cover raster, so its baked-in blue
   // "water" class reads as sea. Shown/hidden together with the land cover.
-  map.addSource("ocean", { type: "geojson", data: "ocean_ne110.geojson" });
+  map.addSource("ocean", { type: "geojson", data: "ocean_ne110.geojson?v=3" });
   map.addLayer({
     id: "ocean-mask",
     type: "fill",
     source: "ocean",
-    layout: { visibility: "none" },
     paint: { "fill-color": "#0c0c0c" },
   });
 
   // ---- Digital divide: internet-speed country choropleth (off by default) -
+  // Semi-transparent tint (no white land base) so the land cover / base shows
+  // through when this overlay is on.
   map.addSource("speed", { type: "geojson", data: "internet_speed.geojson" });
-  map.addLayer({
-    id: "divide-landbase",
-    type: "fill",
-    source: "speed",
-    layout: { visibility: "none" },
-    paint: { "fill-color": "#ffffff" },
-  });
   map.addLayer({
     id: "divide-fill",
     type: "fill",
     source: "speed",
     layout: { visibility: "none" },
-    paint: { "fill-color": speedColor, "fill-opacity": 0.82 },
+    paint: { "fill-color": speedColor, "fill-opacity": 0.55 },
   });
   map.addLayer({
     id: "divide-outline",
@@ -229,7 +222,7 @@ function wireToggles() {
     });
   };
   bind("toggle-worldcover", ["worldcover-raster", "ocean-mask"]);
-  bind("toggle-divide", ["divide-landbase", "divide-fill", "divide-outline"]);
+  bind("toggle-divide", ["divide-fill", "divide-outline"]);
   bind("toggle-cables", ["cables-line", "cables-glow"]);
   bind("toggle-datacentres", ["datacentres-circle"]);
 }
