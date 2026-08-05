@@ -10,10 +10,6 @@ const PINK = "#c22e69"; // focal — data centres (magma magenta)
 const CABLE = "#cb5600"; // Tibetan Tiger (burnt orange) — cables
 const YGREEN = "#828211"; // yellow-green dark — peatlands (legend/reference)
 
-// GFW Global Peatlands is published as raster XYZ tiles (zoom 0-12).
-const PEAT_TILES =
-  "https://tiles.globalforestwatch.org/gfw_peatlands/v20230315/default/{z}/{x}/{y}.png";
-
 // Global land cover — NASA GIBS "MODIS IGBP Land Cover Type" (annual, ~500 m),
 // pre-coloured PNG tiles, no API key. Native max zoom 8; MapLibre overzooms
 // beyond that. (ESA WorldCover's Terrascope host is currently unreachable, and
@@ -91,6 +87,17 @@ map.on("load", () => {
     paint: { "raster-opacity": 0.9 },
   });
 
+  // Dark ocean mask painted over the land-cover raster, so its baked-in blue
+  // "water" class reads as sea. Shown/hidden together with the land cover.
+  map.addSource("ocean", { type: "geojson", data: "ocean_ne110.geojson" });
+  map.addLayer({
+    id: "ocean-mask",
+    type: "fill",
+    source: "ocean",
+    layout: { visibility: "none" },
+    paint: { "fill-color": "#0c0c0c" },
+  });
+
   // ---- Digital divide: internet-speed country choropleth (off by default) -
   map.addSource("speed", { type: "geojson", data: "internet_speed.geojson" });
   map.addLayer({
@@ -113,28 +120,6 @@ map.on("load", () => {
     source: "speed",
     layout: { visibility: "none" },
     paint: { "line-color": "#c9c4bb", "line-width": 0.4 },
-  });
-
-  // ---- Peatlands (global raster, hue-rotated toward yellow-green) ---------
-  // Hue-rotation shifts GFW's native periwinkle to a yellow-green while leaving
-  // the transparency mask intact, so it only colours actual peat pixels.
-  map.addSource("peatlands", {
-    type: "raster",
-    tiles: [PEAT_TILES],
-    tileSize: 256,
-    maxzoom: 12,
-    attribution:
-      '<a href="https://data.globalforestwatch.org/datasets/gfw::global-peatlands/about" target="_blank" rel="noopener">Global Peatlands</a> — GFW/WRI (CC-BY-4.0)',
-  });
-  map.addLayer({
-    id: "peatlands-raster",
-    type: "raster",
-    source: "peatlands",
-    paint: {
-      "raster-hue-rotate": -172, // periwinkle (~232°) → olive yellow-green (~60°)
-      "raster-saturation": 0.3,
-      "raster-opacity": 0.85,
-    },
   });
 
   // ---- Submarine cables: TeleGeography global routes (mid-tone blue) ------
@@ -243,9 +228,8 @@ function wireToggles() {
       layerIds.forEach((id) => map.setLayoutProperty(id, "visibility", vis));
     });
   };
-  bind("toggle-worldcover", ["worldcover-raster"]);
+  bind("toggle-worldcover", ["worldcover-raster", "ocean-mask"]);
   bind("toggle-divide", ["divide-landbase", "divide-fill", "divide-outline"]);
-  bind("toggle-peatlands", ["peatlands-raster"]);
   bind("toggle-cables", ["cables-line", "cables-glow"]);
   bind("toggle-datacentres", ["datacentres-circle"]);
 }
