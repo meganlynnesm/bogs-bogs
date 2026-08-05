@@ -12,15 +12,15 @@
     name: "Obsolescence", sub: "one word, eight subjects", kind: "root",
     children: [
       { name: "Happens to us", pole: "IMPOSED", kind: "branch", children: [
-        { name: "Loukissas & Wang", subject: "the local", note: "a data setting flattened into a portable set", color: "#5B7A8F" },
-        { name: "Lanier", subject: "the worker", note: "the levee erodes; unpaid data providers go first", color: "#7A5B8F" },
-        { name: "Crawford", subject: "the device", note: "built to die; obsolescence decided upstream", color: "#B4533A" },
-        { name: "Srnicek", subject: "the firm", note: "lean platforms fold when cheap money ends", color: "#2F5D62" },
+        { name: "Loukissas & Wang", subject: "the local", note: "a data setting flattened into a portable set", color: "#5B7A8F", covers: ["cover-img/LoukissasWang_1.avif", "cover-img/LoukissasWang_2.avif"] },
+        { name: "Lanier", subject: "the worker", note: "the levee erodes; unpaid data providers go first", color: "#7A5B8F", cover: "cover-img/lanier_1.jpg" },
+        { name: "Crawford", subject: "the device", note: "built to die; obsolescence decided upstream", color: "#B4533A", cover: "cover-img/Crawford_1.jpg" },
+        { name: "Srnicek", subject: "the firm", note: "lean platforms fold when cheap money ends", color: "#2F5D62", cover: "cover-img/Srnicek_1.jpg" },
       ]},
       { name: "We choose", pole: "CHOSEN", kind: "branch", children: [
-        { name: "Morozov", subject: "the mindset", note: "solutionism and 'the Internet' retired as ideas", color: "#A6772E" },
-        { name: "Vettese & Pendergrass", subject: "the infrastructure", note: "geoengineering refused; Prometheanism extirpated", color: "#4A7C3F" },
-        { name: "Benjamin", subject: "the story", note: "the script of inevitability is what has expired", color: "#6E5A9E" },
+        { name: "Morozov", subject: "the mindset", note: "solutionism and 'the Internet' retired as ideas", color: "#A6772E", cover: "cover-img/Morozov_1.png" },
+        { name: "Vettese & Pendergrass", subject: "the infrastructure", note: "geoengineering refused; Prometheanism extirpated", color: "#4A7C3F", cover: "cover-img/Vetesse_Pendergrass_1.png" },
+        { name: "Benjamin", subject: "the story", note: "the script of inevitability is what has expired", color: "#6E5A9E", cover: "cover-img/Benjamin_1.jpg" },
         { name: "QueerOS", subject: "the goal itself", note: "'welcomes crashes'; ephemeral by design", color: "#8A8178" },
       ]},
     ]
@@ -53,16 +53,22 @@
   nodeSel.each(function (d) {
     const s = d3.select(this);
     if (d.depth === 2) {                 // leaf reading
-      const cx = 12, cw = 28, ch = 40, tx = cx + cw + 14;  // book-cover slot, then text
-      if (d.data.cover) {
-        s.append("image").attr("class", "ot-cover-img").attr("href", d.data.cover)
-          .attr("x", cx).attr("y", -ch / 2).attr("width", cw).attr("height", ch)
-          .attr("preserveAspectRatio", "xMidYMid slice");
-      } else {
+      const cx = 12, cw = 28, ch = 40, gap = 5;   // book-cover slot(s), then text
+      const covers = d.data.covers || (d.data.cover ? [d.data.cover] : null);
+      let tx;
+      if (covers) {
+        covers.forEach((href, i) => {
+          s.append("image").attr("class", "ot-cover-img").attr("href", href)
+            .attr("x", cx + i * (cw + gap)).attr("y", -ch / 2).attr("width", cw).attr("height", ch)
+            .attr("preserveAspectRatio", "xMidYMid slice");
+        });
+        tx = cx + covers.length * (cw + gap) - gap + 14;
+      } else {                            // no cover supplied (QueerOS) → coloured placeholder
         s.append("rect").attr("class", "ot-cover").attr("x", cx).attr("y", -ch / 2)
           .attr("width", cw).attr("height", ch).attr("rx", 2)
           .attr("fill", d.data.color).attr("fill-opacity", 0.18)
           .attr("stroke", d.data.color).attr("stroke-width", 1);
+        tx = cx + cw + 14;
       }
       s.append("text").attr("class", "ot-author").attr("x", tx).attr("dy", "-0.25em").text(d.data.name);
       s.append("text").attr("class", "ot-subject").attr("x", tx).attr("dy", "1.0em").text(d.data.subject);
